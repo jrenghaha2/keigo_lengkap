@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>敬語完全版 — Keigo Lengkap (Sonkeigo + Kenjougo) Interaktif</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════
+       ROOT & THEME
+    ══════════════════════════════════════════ */
+    :root {
+      --bg:        #07070f;
+      --surface:   #0f0f1c;
+      --card:      #161625;
+      --card2:     #1c1c30;
+      --border:    #272740;
+      --accent:    #38bdf8;
+      --accent2:   #818cf8;
+      --accent3:   #34d399;
+      --accent4:   #a78bfa;
+      --gold:      #fbbf24;
+      --red:       #f87171;
+      --green:     #86efac;
+      --text:      #e2e8f0;
+      --muted:     #64748b;
+      --muted2:    #94a3b8;
+      --shadow:    0 4px 24px rgba(0,0,0,.4);
+    }
+    [data-theme="light"] {
+      --bg:        #f0f4ff;
+      --surface:   #ffffff;
+      --card:      #ffffff;
+      --card2:     #f8faff;
+      --border:    #dde3f0;
+      --text:      #1e293b;
+      --muted:     #64748b;
+      --muted2:    #64748b;
+      --shadow:    0 4px 24px rgba(0,0,0,.08);
+    }
+
+    /* ══════════════════════════════════════════
+       RESET & BASE
+    ══════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background .3s, color .3s;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 15% 10%, rgba(56,189,248,.06) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 85% 85%, rgba(52,211,153,.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 60% at 50% 50%, rgba(129,140,248,.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════════
+       LAYOUT
+    ══════════════════════════════════════════ */
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px 100px; position: relative; z-index: 1; }
+
+    /* ══════════════════════════════════════════
+       TOP BAR
+    ══════════════════════════════════════════ */
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(7,7,15,.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 16px;
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      transition: background .3s;
+    }
+    [data-theme="light"] .topbar { background: rgba(240,244,255,.94); }
+    .topbar-brand {
+      font-family: 'Noto Serif JP', serif;
+      font-size: .85rem; font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent3));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .topbar-actions { display: flex; gap: 6px; align-items: center; flex-wrap: nowrap; }
+
+    .btn-sm {
+      padding: 6px 10px; border-radius: 8px; font-size: .73rem; font-weight: 600;
+      border: 1px solid var(--border); background: var(--card); color: var(--text);
+      cursor: pointer; transition: all .2s; display: inline-flex; align-items: center; gap: 4px;
+      white-space: nowrap; min-height: 34px; touch-action: manipulation;
+    }
+    .btn-sm:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+    .btn-anki { border-color: rgba(52,211,153,.4); color: var(--accent3); background: rgba(52,211,153,.06); }
+    .btn-anki:hover { background: rgba(52,211,153,.12); border-color: var(--accent3); color: var(--accent3); }
+    .btn-print { border-color: rgba(56,189,248,.4); color: var(--accent); background: rgba(56,189,248,.06); }
+    .btn-print:hover { background: rgba(56,189,248,.12); border-color: var(--accent); color: var(--accent); }
+    .btn-dark { border-color: rgba(129,140,248,.4); color: var(--accent2); background: rgba(129,140,248,.06); }
+    .btn-dark:hover { background: rgba(129,140,248,.12); }
+
+    /* ══════════════════════════════════════════
+       HEADER / HERO
+    ══════════════════════════════════════════ */
+    .hero { text-align: center; padding: 44px 0 36px; }
+    .hero-kana { font-size: .8rem; color: var(--accent); letter-spacing: .35em; margin-bottom: 10px; opacity: .8; }
+    .hero-kanji {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(2.6rem, 8vw, 5rem); font-weight: 700; letter-spacing: .1em;
+      background: linear-gradient(135deg, #fff 20%, var(--accent) 45%, var(--accent3) 75%, var(--gold) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      line-height: 1.1; filter: drop-shadow(0 0 30px rgba(56,189,248,.25));
+    }
+    [data-theme="light"] .hero-kanji {
+      background: linear-gradient(135deg, #1e293b 20%, #0ea5e9 45%, #059669 75%, #d97706 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-romaji { font-size: clamp(.85rem, 3vw, 1.1rem); color: var(--muted2); margin-top: 5px; letter-spacing: .22em; }
+    .hero-sub { font-size: clamp(.88rem, 2.5vw, 1rem); color: var(--muted2); margin-top: 10px; font-weight: 500; }
+    .hero-desc { max-width: 640px; margin: 14px auto 0; font-size: clamp(.82rem, 2.2vw, .91rem); color: var(--muted); line-height: 1.8; }
+    .badge-row { display: flex; gap: 7px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
+    .badge { padding: 4px 13px; border-radius: 999px; font-size: .72rem; font-weight: 600; border: 1px solid; }
+    .badge-n4 { border-color: var(--accent); color: var(--accent); background: rgba(56,189,248,.08); }
+    .badge-n3 { border-color: var(--accent2); color: var(--accent2); background: rgba(129,140,248,.08); }
+    .badge-mnn { border-color: var(--accent3); color: var(--accent3); background: rgba(52,211,153,.08); }
+    .badge-keigo { border-color: var(--gold); color: var(--gold); background: rgba(251,191,36,.08); }
+
+    /* ══════════════════════════════════════════
+       TAB BAR — MOBILE-FIRST (6 tabs)
+    ══════════════════════════════════════════ */
+    .tabs {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 4px; margin-bottom: 32px;
+    }
+    @media(min-width: 701px) {
+      .tabs {
+        display: flex; border-bottom: 1px solid var(--border);
+        margin-bottom: 40px; overflow-x: auto; gap: 2px;
+        scrollbar-width: none; grid-template-columns: none;
+      }
+      .tabs::-webkit-scrollbar { display: none; }
+    }
+    .tab-btn {
+      padding: 10px 6px; font-size: .68rem; font-weight: 600;
+      color: var(--muted); border: 1px solid var(--border);
+      background: var(--card); cursor: pointer;
+      white-space: normal; transition: all .2s;
+      font-family: 'Noto Sans JP', sans-serif;
+      border-radius: 10px; line-height: 1.3; text-align: center;
+      min-height: 54px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      touch-action: manipulation;
+    }
+    .tab-btn:hover { color: var(--text); border-color: var(--accent2); }
+    .tab-btn.active { color: var(--accent); border-color: var(--accent); background: rgba(56,189,248,.08); }
+    .tab-btn .lv { font-size: .56rem; color: var(--accent); display: block; margin-bottom: 2px; opacity: .8; letter-spacing: .06em; font-weight: 700; }
+    .tab-btn.active .lv { opacity: 1; }
+    .tab-btn.sk .lv { color: var(--accent); }
+    .tab-btn.sk.active { color: var(--accent); border-color: var(--accent); background: rgba(56,189,248,.08); }
+    .tab-btn.kj .lv { color: var(--accent3); }
+    .tab-btn.kj.active { color: var(--accent3); border-color: var(--accent3); background: rgba(52,211,153,.08); }
+    .tab-btn.mix .lv { color: var(--gold); }
+    .tab-btn.mix.active { color: var(--gold); border-color: var(--gold); background: rgba(251,191,36,.08); }
+
+    @media(min-width: 701px) {
+      .tab-btn {
+        padding: 14px 16px; font-size: .84rem; font-weight: 500;
+        border: none; background: none;
+        border-bottom: 3px solid transparent; border-radius: 0;
+        white-space: nowrap; min-height: 0; flex: 1; min-width: 100px;
+      }
+      .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); background: none; border-color: transparent; border-bottom-color: var(--accent); }
+      .tab-btn.kj.active { border-bottom-color: var(--accent3); }
+      .tab-btn.mix.active { border-bottom-color: var(--gold); }
+      .tab-btn:hover { border-color: transparent; }
+    }
+
+    /* ══════════════════════════════════════════
+       CONTENT SECTIONS
+    ══════════════════════════════════════════ */
+    .tab-content { display: none; animation: fadeUp .3s ease; }
+    .tab-content.active { display: block; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .sec-title { font-family: 'Noto Serif JP', serif; font-size: clamp(1.3rem, 4vw, 1.75rem); font-weight: 700; margin-bottom: 8px; }
+    .sec-desc { color: var(--muted2); line-height: 1.8; margin-bottom: 24px; font-size: .92rem; }
+
+    /* ══════════════════════════════════════════
+       INFO BOXES
+    ══════════════════════════════════════════ */
+    .box {
+      border-radius: 0 12px 12px 0; padding: 15px 18px; margin-bottom: 22px;
+      font-size: .88rem; line-height: 1.85; border-left: 4px solid;
+    }
+    .box-blue   { border-color: var(--accent);  background: rgba(56,189,248,.07); }
+    .box-green  { border-color: var(--accent3); background: rgba(52,211,153,.07); }
+    .box-gold   { border-color: var(--gold);    background: rgba(251,191,36,.07); }
+    .box-red    { border-color: var(--red);     background: rgba(248,113,113,.07); }
+    .box-purple { border-color: var(--accent2); background: rgba(129,140,248,.07); }
+    .box strong { font-weight: 700; }
+
+    .info-box {
+      border-left: 4px solid var(--accent); background: rgba(56,189,248,.07);
+      border-radius: 0 12px 12px 0; padding: 15px 18px; margin-bottom: 22px;
+      font-size: .88rem; line-height: 1.85;
+    }
+    .warn-box {
+      border-left: 4px solid var(--gold); background: rgba(251,191,36,.07);
+      border-radius: 0 12px 12px 0; padding: 15px 18px; margin-bottom: 22px;
+      font-size: .88rem; line-height: 1.85;
+    }
+    .tip-box {
+      border-left: 4px solid var(--accent3); background: rgba(52,211,153,.07);
+      border-radius: 0 12px 12px 0; padding: 15px 18px; margin-bottom: 22px;
+      font-size: .88rem; line-height: 1.85;
+    }
+    .danger-box {
+      border-left: 4px solid var(--red); background: rgba(248,113,113,.07);
+      border-radius: 0 12px 12px 0; padding: 15px 18px; margin-bottom: 22px;
+      font-size: .88rem; line-height: 1.85;
+    }
+
+    /* ══════════════════════════════════════════
+       FORMULA BLOCK
+    ══════════════════════════════════════════ */
+    .formula {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 18px 20px; margin-bottom: 22px;
+      font-size: .92rem; line-height: 2.1;
+    }
+    .formula code { background: rgba(56,189,248,.15); color: #7dd3fc; padding: 2px 8px; border-radius: 6px; font-family: monospace; font-size: .9em; }
+    .formula-title { font-size: .7rem; letter-spacing: .1em; color: var(--muted); margin-bottom: 10px; font-weight: 600; }
+
+    /* ══════════════════════════════════════════
+       ANALOGY CARDS
+    ══════════════════════════════════════════ */
+    .analogy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0; }
+    @media(max-width:480px){ .analogy-grid { grid-template-columns: 1fr; gap: 10px; } }
+    .analogy-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 20px; position: relative; overflow: hidden;
+      transition: transform .2s, border-color .2s;
+    }
+    .analogy-card:hover { transform: translateY(-3px); }
+    .analogy-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--glow-a) 0%, transparent 70%);
+      opacity: .06; pointer-events: none;
+    }
+    .analogy-card.blue { --glow-a: #38bdf8; border-color: rgba(56,189,248,.25); }
+    .analogy-card.green { --glow-a: #34d399; border-color: rgba(52,211,153,.25); }
+    .analogy-card.gold { --glow-a: #fbbf24; border-color: rgba(251,191,36,.25); }
+    .analogy-label { font-size: .7rem; letter-spacing: .1em; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+    .analogy-title { font-family: 'Noto Serif JP', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 7px; }
+    .analogy-card.blue .analogy-title { color: var(--accent); }
+    .analogy-card.green .analogy-title { color: var(--accent3); }
+    .analogy-card.gold .analogy-title { color: var(--gold); }
+    .analogy-body { font-size: .83rem; color: var(--muted2); line-height: 1.7; }
+    .analogy-icon { font-size: 1.7rem; margin-bottom: 8px; display: block; }
+
+    /* ══════════════════════════════════════════
+       REGISTER NOTE BOX
+    ══════════════════════════════════════════ */
+    .register-note { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 22px; }
+    @media(max-width:480px){ .register-note { grid-template-columns: 1fr; } }
+    .register-cell { border-radius: 10px; padding: 13px 16px; font-size: .85rem; line-height: 1.7; border: 1px solid; }
+    .register-cell.neutral { border-color: rgba(56,189,248,.3); background: rgba(56,189,248,.05); }
+    .register-cell.formal  { border-color: rgba(52,211,153,.3); background: rgba(52,211,153,.05); }
+    .register-cell-title { font-size: .68rem; font-weight: 700; letter-spacing: .08em; margin-bottom: 6px; }
+    .register-cell.neutral .register-cell-title { color: var(--accent); }
+    .register-cell.formal  .register-cell-title { color: var(--accent3); }
+    .register-cell .reg-formula { font-family: 'Noto Serif JP', serif; font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .register-cell .reg-example { font-size: .8rem; color: var(--muted2); }
+
+    /* ══════════════════════════════════════════
+       GOLD BOX SPECIAL — ていただけますか
+    ══════════════════════════════════════════ */
+    .box-itadake {
+      border-left: 4px solid var(--gold); background: rgba(251,191,36,.07);
+      border-radius: 0 14px 14px 0; padding: 18px 20px; margin-bottom: 22px;
+      font-size: .88rem; line-height: 1.9;
+    }
+    .box-itadake .itadake-title { font-family: 'Noto Serif JP', serif; font-size: 1.05rem; font-weight: 700; color: var(--gold); margin-bottom: 10px; }
+    .box-itadake .itadake-formula {
+      background: rgba(251,191,36,.12); border: 1px solid rgba(251,191,36,.3);
+      border-radius: 10px; padding: 10px 14px; margin: 10px 0;
+      font-family: 'Noto Serif JP', serif; font-size: .95rem;
+    }
+    .box-itadake .itadake-ex { display: flex; flex-direction: column; gap: 7px; margin-top: 12px; }
+    .box-itadake .itadake-row {
+      background: rgba(251,191,36,.05); border-radius: 8px;
+      padding: 8px 12px; font-size: .85rem; border-left: 3px solid rgba(251,191,36,.4);
+    }
+    .box-itadake .itadake-jp { font-family: 'Noto Serif JP', serif; font-weight: 700; color: var(--gold); }
+    .box-itadake .itadake-id { font-size: .8rem; color: var(--muted2); margin-top: 3px; }
+
+    /* ══════════════════════════════════════════
+       TABLES
+    ══════════════════════════════════════════ */
+    .tbl-wrap { overflow-x: auto; border-radius: 14px; margin-bottom: 28px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { background: linear-gradient(90deg, rgba(56,189,248,.15), rgba(52,211,153,.15)); }
+    thead th { padding: 12px 14px; text-align: left; font-size: .76rem; letter-spacing: .07em; color: var(--muted2); font-weight: 600; }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background .15s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,.025); }
+    [data-theme="light"] tbody tr:hover { background: rgba(0,0,0,.025); }
+    td { padding: 12px 14px; vertical-align: middle; font-size: .91rem; line-height: 1.7; }
+    .jp { font-family: 'Noto Serif JP', serif; font-size: 1.05rem; font-weight: 700; color: #e0e7ff; }
+    [data-theme="light"] .jp { color: #1e3a5f; }
+    .jp-sm { font-family: 'Noto Serif JP', serif; font-size: .88rem; color: var(--muted2); }
+    .jp-reading { font-size: .73rem; color: var(--muted); display: block; margin-top: 2px; }
+    .jp-example { font-family: 'Noto Serif JP', serif; font-size: .95rem; color: #cbd5e1; }
+    .jp-tr { font-size: .8rem; color: var(--muted); margin-top: 4px; }
+    ruby rt { font-size: .58em; color: #60a5fa; }
+    .highlight-cell { color: var(--accent3); font-weight: 700; font-family: 'Noto Serif JP', serif; font-size: 1.02rem; }
+    .highlight-sonk { color: var(--accent); font-weight: 700; font-family: 'Noto Serif JP', serif; font-size: 1.02rem; }
+    .muted-cell { color: var(--muted); font-size: .83rem; }
+
+    /* Badge tipe kata */
+    .badge-type { display: inline-block; font-size: .68rem; padding: 1px 8px; border-radius: 4px; vertical-align: middle; margin-left: 4px; font-weight: 600; }
+    .badge-wago    { background: rgba(56,189,248,.18);  color: #93c5fd; border: 1px solid rgba(56,189,248,.3); }
+    .badge-kango   { background: rgba(129,140,248,.18); color: #c4b5fd; border: 1px solid rgba(129,140,248,.3); }
+    .badge-special { background: rgba(251,191,36,.18);  color: #fcd34d; border: 1px solid rgba(251,191,36,.3); }
+
+    /* Level tags */
+    .lv-tag { display: inline-block; font-size: .67rem; padding: 2px 9px; border-radius: 999px; font-weight: 700; margin-left: 6px; }
+    .lv-plain { background: rgba(100,116,139,.2); color: var(--muted2); }
+    .lv-l3    { background: rgba(52,211,153,.15); color: var(--accent3); }
+    .lv-l2    { background: rgba(56,189,248,.15); color: var(--accent); }
+    .lv-l1    { background: rgba(251,191,36,.15); color: var(--gold); }
+    .lv-l4    { background: rgba(248,113,113,.15); color: #fca5a5; }
+
+    /* ══════════════════════════════════════════
+       SPEAK BUTTON
+    ══════════════════════════════════════════ */
+    .speak-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(56,189,248,.12); border: 1px solid rgba(56,189,248,.25);
+      color: var(--accent); font-size: .9rem;
+      cursor: pointer; transition: all .18s; vertical-align: middle;
+      padding: 0; line-height: 1; flex-shrink: 0;
+    }
+    .speak-btn:hover { background: rgba(56,189,248,.25); transform: scale(1.15); }
+
+    /* ══════════════════════════════════════════
+       VOCAB CARDS (kenjougo style)
+    ══════════════════════════════════════════ */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-bottom: 28px; }
+    .vocab-card {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 16px; transition: border-color .2s, transform .2s;
+    }
+    .vocab-card:hover { border-color: var(--accent3); transform: translateY(-2px); }
+    .vocab-card-label { font-size: .68rem; color: var(--muted); letter-spacing: .1em; margin-bottom: 8px; font-weight: 700; }
+    .vocab-card-jp { font-family: 'Noto Serif JP', serif; font-size: 1rem; font-weight: 700; color: var(--muted2); margin-bottom: 4px; }
+    .vocab-card-reading { font-size: .72rem; color: var(--muted); }
+    .vocab-card-arrow { font-size: 1.3rem; color: var(--border); margin: 7px 0; }
+    .vocab-card-kenjo { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 700; color: var(--accent3); margin-bottom: 4px; }
+    .vocab-card-sonk  { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+    .vocab-card-meaning { font-size: .77rem; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+
+    .card {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 16px; transition: border-color .2s, transform .2s;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .card-label { font-size: .72rem; color: var(--muted); margin-bottom: 8px; letter-spacing: .06em; font-weight: 700; }
+    .card-main { font-family: 'Noto Serif JP', serif; font-size: 1rem; margin-bottom: 10px; line-height: 1.6; }
+    .card-arrow { color: var(--border); margin: 0 8px; }
+    .card-ex { font-size: .82rem; color: var(--muted2); line-height: 1.7; }
+
+    /* ══════════════════════════════════════════
+       EXAMPLE ITEMS
+    ══════════════════════════════════════════ */
+    .ex-list { display: flex; flex-direction: column; gap: 18px; margin-bottom: 30px; }
+    .ex-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 20px; transition: border-color .2s;
+    }
+    .ex-item:hover { border-color: var(--accent2); }
+    .ex-num { font-size: .65rem; letter-spacing: .12em; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+    .ex-row { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; align-items: start; margin-bottom: 6px; }
+    .ex-tag { font-size: .65rem; padding: 3px 8px; border-radius: 5px; font-weight: 700; white-space: nowrap; margin-top: 3px; }
+    .ex-tag-plain { background: rgba(100,116,139,.15); color: var(--muted2); }
+    .ex-tag-keigo { background: rgba(52,211,153,.12); color: var(--accent3); }
+    .ex-tag-sonk  { background: rgba(56,189,248,.12); color: var(--accent); }
+    .ex-jp { font-family: 'Noto Serif JP', serif; font-size: .98rem; font-weight: 700; line-height: 1.6; }
+    .ex-id { font-size: .8rem; color: var(--muted); margin-top: 2px; }
+    .ex-note { font-size: .78rem; color: var(--muted2); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); line-height: 1.7; }
+
+    /* ══════════════════════════════════════════
+       COMPARE ROWS
+    ══════════════════════════════════════════ */
+    .compare-row {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 14px 16px; margin-bottom: 10px;
+    }
+    .compare-label { font-size: .67rem; letter-spacing: .08em; color: var(--muted); min-width: 120px; padding-top: 4px; font-weight: 700; flex-shrink: 0; }
+    .compare-jp { font-family: 'Noto Serif JP', serif; font-size: .98rem; line-height: 1.7; }
+
+    /* ══════════════════════════════════════════
+       QUIZ
+    ══════════════════════════════════════════ */
+    .quiz-score { font-size: .88rem; color: var(--muted2); text-align: right; margin-bottom: 16px; }
+    .quiz-score span { font-weight: 700; color: var(--accent3); }
+    .quiz-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 20px; margin-bottom: 14px; transition: border-color .2s;
+    }
+    .quiz-card.answered { border-color: var(--border); }
+    .quiz-q { font-family: 'Noto Serif JP', serif; font-size: .95rem; line-height: 1.8; font-weight: 600; margin-bottom: 12px; color: var(--text); }
+    .blank { color: var(--accent); font-weight: 700; }
+    .quiz-options { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .quiz-opt {
+      padding: 8px 14px; border-radius: 10px; font-size: .84rem; font-weight: 600;
+      border: 1px solid var(--border); background: var(--card2); color: var(--text);
+      cursor: pointer; transition: all .18s; font-family: 'Noto Serif JP', serif;
+      touch-action: manipulation;
+    }
+    .quiz-opt:hover:not(:disabled) { border-color: var(--accent2); color: var(--accent2); }
+    .quiz-opt.correct { border-color: var(--accent3); background: rgba(52,211,153,.12); color: var(--accent3); }
+    .quiz-opt.wrong   { border-color: var(--red); background: rgba(248,113,113,.12); color: var(--red); }
+    .quiz-feedback { font-size: .82rem; color: var(--muted2); line-height: 1.7; min-height: 20px; }
+
+    /* ══════════════════════════════════════════
+       DRAG & DROP
+    ══════════════════════════════════════════ */
+    .dnd-options { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .dnd-game { display: flex; flex-direction: column; gap: 10px; }
+    .dnd-item { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .dnd-word { min-width: 130px; font-family: 'Noto Serif JP', serif; font-size: .95rem; font-weight: 700; color: var(--muted2); display: flex; align-items: center; gap: 6px; }
+    .dnd-arrow { color: var(--muted); font-size: .9rem; }
+    .dnd-drop {
+      min-width: 160px; padding: 9px 14px; border-radius: 10px;
+      border: 2px dashed var(--border); color: var(--muted); font-size: .88rem;
+      background: var(--surface); cursor: pointer; transition: all .2s;
+      font-family: 'Noto Serif JP', serif; text-align: center;
+    }
+    .dnd-drop.drag-over { border-color: var(--accent); background: rgba(56,189,248,.08); color: var(--accent); }
+    .dnd-drop.filled { border-style: solid; border-color: var(--accent2); color: var(--accent2); background: rgba(129,140,248,.08); }
+    .dnd-drop.correct-drop { border-color: var(--accent3); background: rgba(52,211,153,.1); color: var(--accent3); }
+    .dnd-drop.wrong-drop { border-color: var(--red); background: rgba(248,113,113,.08); color: var(--red); }
+    .dnd-chip {
+      padding: 8px 14px; border-radius: 10px; border: 1px solid rgba(56,189,248,.3);
+      background: rgba(56,189,248,.08); color: var(--accent);
+      font-family: 'Noto Serif JP', serif; font-size: .92rem;
+      cursor: grab; transition: all .2s; user-select: none;
+      font-weight: 600; touch-action: manipulation;
+    }
+    .dnd-chip:hover { background: rgba(56,189,248,.15); transform: translateY(-2px); }
+    .dnd-chip.used { opacity: .3; cursor: default; pointer-events: none; }
+    .dnd-chip.dragging { opacity: .5; transform: scale(.95); }
+    .dnd-chip.selected { border-color: var(--gold); background: rgba(251,191,36,.18); color: var(--gold); box-shadow: 0 0 0 3px rgba(251,191,36,.3); transform: scale(1.07); cursor: pointer; }
+    .dnd-check-btn {
+      margin-top: 14px; padding: 10px 24px; border-radius: 12px; font-size: .86rem; font-weight: 700;
+      border: none; background: linear-gradient(135deg, var(--accent), var(--accent3));
+      color: #fff; cursor: pointer; transition: all .2s; touch-action: manipulation;
+    }
+    .dnd-check-btn:hover { opacity: .9; transform: translateY(-1px); }
+    .dnd-result { margin-top: 10px; font-size: .88rem; color: var(--muted2); min-height: 20px; }
+
+    /* ══════════════════════════════════════════
+       PROGRESS BAR
+    ══════════════════════════════════════════ */
+    .progress-wrap { margin: 18px 0 8px; }
+    .progress-label { display: flex; justify-content: space-between; font-size: .78rem; color: var(--muted); margin-bottom: 5px; }
+    .progress-track { height: 7px; background: var(--border); border-radius: 999px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 999px; width: 0; transition: width 1.2s ease; }
+
+    .polite-bar { margin: 14px 0 6px; }
+    .polite-label { display: flex; justify-content: space-between; font-size: .78rem; color: var(--muted); margin-bottom: 5px; }
+    .polite-track { height: 7px; background: var(--border); border-radius: 999px; overflow: hidden; }
+    .polite-fill { height: 100%; border-radius: 999px; width: 0; transition: width 1.2s ease; }
+
+    /* ══════════════════════════════════════════
+       FINAL BANNER
+    ══════════════════════════════════════════ */
+    .final-banner {
+      margin-top: 22px; background: rgba(56,189,248,.08);
+      border: 1px solid rgba(56,189,248,.25); border-radius: 14px;
+      padding: 24px; text-align: center;
+    }
+    .final-banner .score-big { font-size: 2.2rem; font-weight: 700; color: var(--accent3); font-family: 'Noto Serif JP', serif; }
+    .final-banner .score-msg { font-size: .95rem; color: var(--muted2); margin-top: 5px; }
+
+    /* ══════════════════════════════════════════
+       SUMMARY GRID
+    ══════════════════════════════════════════ */
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 12px; margin-bottom: 24px; }
+    .summary-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 15px; text-align: center; transition: border-color .2s, transform .2s; }
+    .summary-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .summary-lv { font-size: 1.7rem; font-weight: 700; font-family: 'Noto Serif JP', serif; margin-bottom: 5px; }
+    .summary-name { font-size: .74rem; color: var(--accent); letter-spacing: .06em; margin-bottom: 9px; font-weight: 600; }
+    .summary-rule { font-size: .81rem; color: var(--muted2); line-height: 1.6; }
+
+    /* ══════════════════════════════════════════
+       SECTION H4
+    ══════════════════════════════════════════ */
+    h4 { font-size: 1rem; font-weight: 700; color: #c7d2fe; margin: 24px 0 12px; }
+    [data-theme="light"] h4 { color: #3730a3; }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      text-align: center; padding: 36px 20px 28px;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: .8rem; line-height: 1.9; margin-top: 50px;
+    }
+    footer strong { color: var(--muted2); }
+
+    /* ══════════════════════════════════════════
+       MOBILE RESPONSIVE TABLES (≤600px)
+    ══════════════════════════════════════════ */
+    @media(max-width:600px){
+      .wrap { padding: 0 10px 80px; }
+      .hero { padding: 32px 0 26px; }
+      .tbl-wrap { overflow-x: visible; border-radius: 0; border: none; margin-left: -10px; margin-right: -10px; }
+      .tbl-wrap table { display: block; border: none; }
+      .tbl-wrap thead { display: none; }
+      .tbl-wrap tbody { display: block; }
+      .tbl-wrap tbody tr { display: block; background: var(--card); border: 1px solid var(--border); border-radius: 11px; margin-bottom: 9px; margin-left: 10px; margin-right: 10px; overflow: hidden; }
+      .tbl-wrap td { display: flex; flex-direction: column; padding: 9px 13px; font-size: .85rem; border-bottom: 1px solid rgba(39,39,64,.5); }
+      .tbl-wrap td:last-child { border-bottom: none; }
+      .tbl-wrap td::before { content: attr(data-label); font-size: .63rem; color: var(--muted); letter-spacing: .08em; font-weight: 700; margin-bottom: 3px; }
+      .dnd-item { flex-direction: column; align-items: flex-start; }
+      .compare-row { flex-direction: column; }
+      .compare-label { min-width: unset; }
+    }
+
+    @media(max-width:390px){
+      .topbar { padding: 7px 12px; }
+      .topbar-brand { font-size: .76rem; }
+      .btn-sm { padding: 5px 8px; font-size: .67rem; }
+      .hero { padding: 24px 0 20px; }
+      .tabs { grid-template-columns: repeat(3,1fr); gap: 3px; }
+      .tab-btn { padding: 8px 4px; font-size: .62rem; min-height: 50px; }
+      .tab-btn .lv { font-size: .52rem; }
+      .box { padding: 12px 14px; font-size: .83rem; }
+      .quiz-card { padding: 16px 14px; }
+    }
+
+    /* SAFE AREA */
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    @media(max-width:600px){
+      .wrap {
+        padding-left: max(10px, env(safe-area-inset-left));
+        padding-right: max(10px, env(safe-area-inset-right));
+      }
+    }
+
+    /* PRINT */
+    @media print {
+      .topbar, .tabs, .btn-sm, .speak-btn { display: none !important; }
+      .tab-content { display: block !important; }
+      body { background: #fff; color: #000; }
+    }
+
+    /* ══════════════════════════════════════════
+       TOAST
+    ══════════════════════════════════════════ */
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: var(--card2); border: 1px solid var(--accent3);
+      color: var(--accent3); border-radius: 12px; padding: 11px 22px;
+      font-size: .85rem; font-weight: 600; z-index: 999;
+      transition: transform .3s ease, opacity .3s ease;
+      opacity: 0; white-space: nowrap; max-width: 90vw; text-align: center;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  </style>
+</head>
+<body>
+
+<!-- ══ TOP BAR ══ -->
+<div class="topbar">
+  <span class="topbar-brand">敬語完全版 — Sonkeigo + Kenjougo</span>
+  <div class="topbar-actions">
+    <button class="btn-sm btn-anki" onclick="copyAnki()">📋 Anki</button>
+    <button class="btn-sm btn-print" onclick="window.print()">🖨️ Print</button>
+    <button class="btn-sm btn-dark" onclick="toggleTheme()" id="themeBtn">☀️ Light</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ══ HERO ══ -->
+  <header class="hero">
+    <div class="hero-kana">け い ご 　 か ん ぜ ん ば ん</div>
+    <div class="hero-kanji">敬語 完全版</div>
+    <div class="hero-romaji">S O N K E I G O　＋　K E N J O U G O</div>
+    <div class="hero-sub">尊敬語 ✦ 謙譲語 — Panduan Keigo Jepang Paling Lengkap</div>
+    <div class="hero-desc">
+      Kuasai sistem bahasa hormat Jepang secara menyeluruh. Dari <strong>Sonkeigo</strong>
+      (memuliakan orang lain) hingga <strong>Kenjougo</strong> (merendahkan diri sendiri),
+      termasuk pola pasif, 二重敬語, dan latihan interaktif.
+    </div>
+    <div class="badge-row">
+      <span class="badge badge-n4">JLPT N4</span>
+      <span class="badge badge-n3">JLPT N3</span>
+      <span class="badge badge-mnn">Minna no Nihongo Bab 49–50</span>
+      <span class="badge badge-keigo">敬語 Keigo</span>
+    </div>
+  </header>
+
+  <!-- ══ TABS ══ -->
+  <div class="tabs" id="mainTabs">
+    <button class="tab-btn active mix" onclick="showTab(1)" id="tab1">
+      <span class="lv">TAB 1</span>Pengertian Dasar
+    </button>
+    <button class="tab-btn sk" onclick="showTab(2)" id="tab2">
+      <span class="lv">SONKEIGO</span>Kata Khusus + お／ごになる
+    </button>
+    <button class="tab-btn sk" onclick="showTab(3)" id="tab3">
+      <span class="lv">SONKEIGO</span>Bentuk Pasif
+    </button>
+    <button class="tab-btn sk" onclick="showTab(4)" id="tab4">
+      <span class="lv">SONKEIGO</span>二重敬語
+    </button>
+    <button class="tab-btn kj" onclick="showTab(5)" id="tab5">
+      <span class="lv">KENJOUGO</span>Pola + Kata Khusus
+    </button>
+    <button class="tab-btn mix" onclick="showTab(6)" id="tab6">
+      <span class="lv">LATIHAN</span>Kuis + Ringkasan
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 1 — PENGERTIAN DASAR
+  ══════════════════════════════════ -->
+  <div class="tab-content active" id="content1">
+    <div class="sec-title">Pengertian Dasar Keigo (敬語)</div>
+    <p class="sec-desc">
+      Keigo adalah sistem bahasa hormat dalam bahasa Jepang yang terdiri dari tiga jenis utama.
+      Memahami perbedaan <strong>siapa yang melakukan tindakan</strong> adalah kunci utama menggunakan keigo dengan benar.
+    </p>
+
+    <div class="box box-blue">
+      <strong>📌 Prinsip Utama:</strong><br>
+      Keigo bukan sekadar kata sopan — ini sistem lengkap yang mencerminkan <em>hubungan sosial</em>.
+      Kamu harus selalu bertanya: <strong>"Siapa yang melakukan tindakan?"</strong> dan
+      <strong>"Kepada siapa saya berbicara?"</strong>
+    </div>
+
+    <div class="analogy-grid">
+      <div class="analogy-card blue">
+        <span class="analogy-icon">⬆️</span>
+        <div class="analogy-label">SONKEIGO — <ruby>尊敬語<rt>そんけいご</rt></ruby></div>
+        <div class="analogy-title">Memuliakan orang lain</div>
+        <div class="analogy-body">
+          Dipakai untuk tindakan orang yang <strong>LEBIH TINGGI</strong>.<br>
+          Seperti menggunakan kata "beliau" untuk guru yang pergi.<br><br>
+          <em><ruby>先生<rt>せんせい</rt></ruby>がいらっしゃいます</em>
+          <button class="speak-btn" onclick="speak('先生がいらっしゃいます')">🔊</button>
+        </div>
+      </div>
+      <div class="analogy-card green">
+        <span class="analogy-icon">⬇️</span>
+        <div class="analogy-label">KENJOUGO — <ruby>謙譲語<rt>けんじょうご</rt></ruby></div>
+        <div class="analogy-title">Merendahkan diri sendiri</div>
+        <div class="analogy-body">
+          Dipakai untuk tindakan yang <strong>SAYA</strong> lakukan.<br>
+          Seperti bilang "hamba pergi" ketika berbicara ke atasan.<br><br>
+          <em><ruby>私<rt>わたし</rt></ruby>が<ruby>参<rt>まい</rt></ruby>ります</em>
+          <button class="speak-btn" onclick="speak('私が参ります')">🔊</button>
+        </div>
+      </div>
+      <div class="analogy-card gold" style="grid-column: 1 / -1;">
+        <span class="analogy-icon">🗣️</span>
+        <div class="analogy-label">TEINEIGO — <ruby>丁寧語<rt>ていねいご</rt></ruby></div>
+        <div class="analogy-title">Bahasa sopan umum (〜です・〜ます)</div>
+        <div class="analogy-body">
+          Dipakai dalam semua situasi formal tanpa memandang status. Ini adalah dasar sebelum mempelajari sonkeigo dan kenjougo.
+        </div>
+      </div>
+    </div>
+
+    <h4>📊 Tabel Perbandingan: Kapan Pakai Mana</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Situasi</th>
+            <th>Siapa yang Bertindak?</th>
+            <th>Pakai Apa?</th>
+            <th>Contoh</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Situasi">Guru membaca buku</td>
+            <td data-label="Siapa?"><span class="jp"><ruby>先生<rt>せんせい</rt></ruby></span> (orang lebih tinggi)</td>
+            <td data-label="Pakai Apa?"><span style="color:var(--accent);font-weight:700">Sonkeigo ⬆️</span></td>
+            <td data-label="Contoh"><span class="jp">お<ruby>読<rt>よ</rt></ruby>みになります</span> <button class="speak-btn" onclick="speak('お読みになります')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Situasi">Saya membacakan untuk guru</td>
+            <td data-label="Siapa?"><span class="jp"><ruby>私<rt>わたし</rt></ruby></span> (saya sendiri)</td>
+            <td data-label="Pakai Apa?"><span style="color:var(--accent3);font-weight:700">Kenjougo ⬇️</span></td>
+            <td data-label="Contoh"><span class="jp">お<ruby>読<rt>よ</rt></ruby>みします</span> <button class="speak-btn" onclick="speak('お読みします')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Situasi">Direktur datang ke kantor</td>
+            <td data-label="Siapa?"><span class="jp"><ruby>社長<rt>しゃちょう</rt></ruby></span> (orang lebih tinggi)</td>
+            <td data-label="Pakai Apa?"><span style="color:var(--accent);font-weight:700">Sonkeigo ⬆️</span></td>
+            <td data-label="Contoh"><span class="jp">いらっしゃいます</span> <button class="speak-btn" onclick="speak('いらっしゃいます')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Situasi">Saya pergi ke kantor direktur</td>
+            <td data-label="Siapa?"><span class="jp"><ruby>私<rt>わたし</rt></ruby></span> (saya sendiri)</td>
+            <td data-label="Pakai Apa?"><span style="color:var(--accent3);font-weight:700">Kenjougo ⬇️</span></td>
+            <td data-label="Contoh"><span class="jp"><ruby>参<rt>まい</rt></ruby>ります</span> <button class="speak-btn" onclick="speak('参ります')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Situasi">Pelanggan mengatakan sesuatu</td>
+            <td data-label="Siapa?"><span class="jp">お<ruby>客様<rt>きゃくさま</rt></ruby></span> (orang lebih tinggi)</td>
+            <td data-label="Pakai Apa?"><span style="color:var(--accent);font-weight:700">Sonkeigo ⬆️</span></td>
+            <td data-label="Contoh"><span class="jp">おっしゃいます</span> <button class="speak-btn" onclick="speak('おっしゃいます')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Situasi">Saya berkata kepada pelanggan</td>
+            <td data-label="Siapa?"><span class="jp"><ruby>私<rt>わたし</rt></ruby></span> (saya sendiri)</td>
+            <td data-label="Pakai Apa?"><span style="color:var(--accent3);font-weight:700">Kenjougo ⬇️</span></td>
+            <td data-label="Contoh"><span class="jp"><ruby>申<rt>もう</rt></ruby>します</span> <button class="speak-btn" onclick="speak('申します')">🔊</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠️ Kesalahan Paling Umum:</strong><br>
+      ❌ Memakai <strong>Sonkeigo</strong> untuk tindakan diri sendiri → tidak sopan, justru terkesan sombong!<br>
+      ❌ Memakai <strong>Kenjougo</strong> untuk tindakan orang yang lebih tinggi → merendahkan orang lain!<br>
+      ✅ Sonkeigo = orang lain bertindak &nbsp;|&nbsp; Kenjougo = saya yang bertindak
+    </div>
+
+    <div class="tip-box">
+      <strong>🎯 Konteks Penggunaan Keigo:</strong><br>
+      ✅ Di tempat kerja formal (kepada atasan, direktur, klien)<br>
+      ✅ Di toko/restoran (staf kepada pelanggan)<br>
+      ✅ Dalam surat/email resmi<br>
+      ✅ Bertemu orang baru yang statusnya lebih tinggi<br>
+      ❌ Dengan teman sebaya atau keluarga dekat → pakai bahasa biasa
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 2 — SONKEIGO: KATA KHUSUS + お／ごになる
+  ══════════════════════════════════ -->
+  <div class="tab-content" id="content2">
+    <div class="sec-title">Sonkeigo — Kata Khusus + Pola お／ご〜になる</div>
+    <p class="sec-desc">
+      Sonkeigo digunakan untuk memuliakan tindakan orang yang statusnya lebih tinggi.
+      Ada dua cara membentuk sonkeigo: menggunakan <strong>kata kerja khusus (Level 1)</strong>
+      atau menggunakan <strong>pola produktif お／ご〜になる (Level 2)</strong>.
+    </p>
+
+    <h4>⭐ Level 1 — Kata Kerja Sonkeigo Khusus</h4>
+
+    <div class="box box-blue">
+      <strong>📌 Cara Pakai:</strong> Ganti kata kerja biasa dengan kata khusus ini.
+      Perhatikan bahwa subjeknya selalu orang yang <strong>lebih tinggi</strong> (guru, direktur, klien, dll).
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Kata Biasa</th>
+            <th>Sonkeigo Khusus</th>
+            <th>Tipe</th>
+            <th>Arti</th>
+            <th>Contoh Kalimat</th>
+            <th>🔊</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>行く<rt>いく</rt></ruby>・<ruby>来る<rt>くる</rt></ruby>・いる</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk">いらっしゃる</span><br><span class="jp-reading">irassharu / おいでになる</span></td>
+            <td data-label="Tipe"><span class="badge-type badge-special">特別</span></td>
+            <td data-label="Arti">pergi / datang / ada</td>
+            <td data-label="Contoh">
+              <div class="jp-example"><ruby>社長<rt>しゃちょう</rt></ruby>はもう<strong style="color:var(--accent)">いらっしゃいます</strong>か？</div>
+              <div class="jp-tr">Apakah Direktur sudah ada?</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('社長はもういらっしゃいますか')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>言う<rt>いう</rt></ruby></span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk">おっしゃる</span><br><span class="jp-reading">ossharu</span></td>
+            <td data-label="Tipe"><span class="badge-type badge-special">特別</span></td>
+            <td data-label="Arti">berkata / mengatakan</td>
+            <td data-label="Contoh">
+              <div class="jp-example"><ruby>先生<rt>せんせい</rt></ruby>が<strong style="color:var(--accent)">おっしゃった</strong>ことを覚えていますか？</div>
+              <div class="jp-tr">Apakah kamu ingat apa yang sensei katakan?</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('先生がおっしゃったことを覚えていますか')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>食べる<rt>たべる</rt></ruby>・<ruby>飲む<rt>のむ</rt></ruby></span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk"><ruby>召し上がる<rt>めしあがる</rt></ruby></span><br><span class="jp-reading">meshiagaru</span></td>
+            <td data-label="Tipe"><span class="badge-type badge-special">特別</span></td>
+            <td data-label="Arti">makan / minum</td>
+            <td data-label="Contoh">
+              <div class="jp-example">どうぞ<strong style="color:var(--accent)">召し上がってください</strong>。</div>
+              <div class="jp-tr">Silakan makan/minum.</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('どうぞ召し上がってください')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>見る<rt>みる</rt></ruby></span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk"><ruby>ご覧になる<rt>ごらんになる</rt></ruby></span><br><span class="jp-reading">goran ni naru</span></td>
+            <td data-label="Tipe"><span class="badge-type badge-kango">漢語</span></td>
+            <td data-label="Arti">melihat / menonton</td>
+            <td data-label="Contoh">
+              <div class="jp-example">この<ruby>資料<rt>しりょう</rt></ruby>を<strong style="color:var(--accent)">ご覧になりましたか</strong>？</div>
+              <div class="jp-tr">Apakah Anda sudah melihat dokumen ini?</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('この資料をご覧になりましたか')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp">する</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk">なさる</span><br><span class="jp-reading">nasaru</span></td>
+            <td data-label="Tipe"><span class="badge-type badge-special">特別</span></td>
+            <td data-label="Arti">melakukan</td>
+            <td data-label="Contoh">
+              <div class="jp-example">お<ruby>仕事<rt>しごと</rt></ruby>は何を<strong style="color:var(--accent)">なさっていますか</strong>？</div>
+              <div class="jp-tr">Anda bekerja sebagai apa?</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('お仕事は何をなさっていますか')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>知っている<rt>しっている</rt></ruby></span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk"><ruby>ご存じだ<rt>ごぞんじだ</rt></ruby></span><br><span class="jp-reading">gozonji da</span></td>
+            <td data-label="Tipe"><span class="badge-type badge-kango">漢語</span></td>
+            <td data-label="Arti">mengetahui</td>
+            <td data-label="Contoh">
+              <div class="jp-example"><ruby>田中<rt>たなか</rt></ruby>さんを<strong style="color:var(--accent)">ご存じですか</strong>？</div>
+              <div class="jp-tr">Apakah Anda mengenal Tanaka-san?</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('田中さんをご存じですか')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>寝る<rt>ねる</rt></ruby></span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk"><ruby>お休みになる<rt>おやすみになる</rt></ruby></span><br><span class="jp-reading">oyasumi ni naru</span></td>
+            <td data-label="Tipe"><span class="badge-type badge-wago">和語</span></td>
+            <td data-label="Arti">tidur / beristirahat</td>
+            <td data-label="Contoh">
+              <div class="jp-example"><ruby>社長<rt>しゃちょう</rt></ruby>は今<strong style="color:var(--accent)">お休みになっています</strong>。</div>
+              <div class="jp-tr">Direktur sedang beristirahat sekarang.</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('社長は今お休みになっています')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp">くれる</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk">くださる</span><br><span class="jp-reading">kudasaru</span></td>
+            <td data-label="Tipe"><span class="badge-type badge-special">特別</span></td>
+            <td data-label="Arti">memberi (ke saya)</td>
+            <td data-label="Contoh">
+              <div class="jp-example"><ruby>先生<rt>せんせい</rt></ruby>が本を<strong style="color:var(--accent)">くださいました</strong>。</div>
+              <div class="jp-tr">Sensei memberikan buku kepada saya.</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('先生が本をくださいました')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>着る<rt>きる</rt></ruby></span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk"><ruby>お召しになる<rt>おめしになる</rt></ruby></span><br><span class="jp-reading">omeshi ni naru</span></td>
+            <td data-label="Tipe"><span class="badge-type badge-wago">和語</span></td>
+            <td data-label="Arti">memakai (baju)</td>
+            <td data-label="Contoh">
+              <div class="jp-example">素敵なスーツを<strong style="color:var(--accent)">お召しになっています</strong>ね。</div>
+              <div class="jp-tr">Anda memakai setelan yang bagus ya.</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('素敵なスーツをお召しになっていますね')">🔊</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box">
+      <strong>💡 Konjugasi Tidak Beraturan — Wajib Hafal!</strong><br>
+      Empat kata kerja berakhiran <strong>〜aru</strong> punya konjugasi ます yang tidak biasa:<br><br>
+      <span class="jp" style="font-size:.95rem">いらっしゃる</span> → <strong>いらっしゃいます</strong> <button class="speak-btn" onclick="speak('いらっしゃいます')">🔊</button> (bukan いらっしゃります)<br>
+      <span class="jp" style="font-size:.95rem">おっしゃる</span> → <strong>おっしゃいます</strong> <button class="speak-btn" onclick="speak('おっしゃいます')">🔊</button> (bukan おっしゃります)<br>
+      <span class="jp" style="font-size:.95rem">なさる</span> → <strong>なさいます</strong> <button class="speak-btn" onclick="speak('なさいます')">🔊</button> (bukan なさります)<br>
+      <span class="jp" style="font-size:.95rem">くださる</span> → <strong>くださいます</strong> <button class="speak-btn" onclick="speak('くださいます')">🔊</button> (bukan くださります)
+    </div>
+
+    <div class="danger-box">
+      <strong>⚠️ Jangan Salah Kaprah!</strong><br>
+      Sonkeigo Level 1 HANYA untuk orang lain. Contoh salah:<br>
+      ❌ 私は<span class="jp" style="font-size:.92rem">召し上がります</span>。← Tidak boleh memuliakan diri sendiri!<br>
+      ✅ 私は<span class="jp" style="font-size:.92rem">いただきます</span>。← Gunakan kenjougo untuk diri sendiri.
+    </div>
+
+    <h4>🔷 Level 2 — Pola Produktif: お／ご〜になる</h4>
+    <p class="sec-desc" style="margin-bottom:16px">
+      Pola ini bisa dipakai untuk hampir semua kata kerja yang tidak punya bentuk khusus Level 1.
+    </p>
+
+    <div class="formula">
+      <div class="formula-title">RUMUS お／ご〜になる (SONKEIGO)</div>
+      🔹 <strong>Wago</strong> (<ruby>和語<rt>わご</rt></ruby> — kata asli Jepang): <code>お</code> ＋ bentuk ます-stem ＋ <code>になる</code><br>
+      &nbsp;&nbsp;&nbsp;Contoh: <ruby>読む<rt>よむ</rt></ruby> → 読みます → <span class="jp" style="color:#93c5fd">お読みになる</span><br><br>
+      🔸 <strong>Kango</strong> (<ruby>漢語<rt>かんご</rt></ruby> — kata serapan Cina): <code>ご</code> ＋ bagian noun ＋ <code>になる</code><br>
+      &nbsp;&nbsp;&nbsp;Contoh: <ruby>確認する<rt>かくにんする</rt></ruby> → <span class="jp" style="color:#c4b5fd">ご確認になる</span>
+    </div>
+
+    <div class="info-box">
+      <strong>📌 お vs ご — Kapan pakai mana?</strong><br>
+      <strong>お</strong> → kata asli Jepang (wago): <span class="jp">お読み、お帰り、お使い</span><br>
+      <strong>ご</strong> → kata serapan Cina (kango): <span class="jp">ご確認、ご連絡、ご利用</span><br><br>
+      <span style="color:var(--gold)">⚡ Ada pengecualian!</span> Beberapa kango pakai お: <span class="jp">お電話、お食事、お料理</span> — sudah membaur dalam bahasa sehari-hari.
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Kata Biasa</th>
+            <th>Tipe</th>
+            <th>Sonkeigo (お／ご〜になる)</th>
+            <th>Contoh Kalimat</th>
+            <th>🔊</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>読む<rt>よむ</rt></ruby></span></td>
+            <td data-label="Tipe"><span class="badge-type badge-wago">和語</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk"><ruby>お読みになる<rt>およみになる</rt></ruby></span></td>
+            <td data-label="Contoh">
+              <div class="jp-example"><ruby>先生<rt>せんせい</rt></ruby>はこの本を<strong style="color:var(--accent)">お読みになりましたか</strong>？</div>
+              <div class="jp-tr">Apakah sensei sudah membaca buku ini?</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('先生はこの本をお読みになりましたか')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>使う<rt>つかう</rt></ruby></span></td>
+            <td data-label="Tipe"><span class="badge-type badge-wago">和語</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk"><ruby>お使いになる<rt>おつかいになる</rt></ruby></span></td>
+            <td data-label="Contoh">
+              <div class="jp-example">このパソコンを<strong style="color:var(--accent)">お使いになりますか</strong>？</div>
+              <div class="jp-tr">Apakah Anda akan menggunakan komputer ini?</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('このパソコンをお使いになりますか')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>帰る<rt>かえる</rt></ruby></span></td>
+            <td data-label="Tipe"><span class="badge-type badge-wago">和語</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk"><ruby>お帰りになる<rt>おかえりになる</rt></ruby></span></td>
+            <td data-label="Contoh">
+              <div class="jp-example">もう<strong style="color:var(--accent)">お帰りになりますか</strong>？</div>
+              <div class="jp-tr">Apakah Anda sudah akan pulang?</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('もうお帰りになりますか')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>確認する<rt>かくにんする</rt></ruby></span></td>
+            <td data-label="Tipe"><span class="badge-type badge-kango">漢語</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk"><ruby>ご確認になる<rt>ごかくにんになる</rt></ruby></span></td>
+            <td data-label="Contoh">
+              <div class="jp-example">こちらを<strong style="color:var(--accent)">ご確認になりましたか</strong>？</div>
+              <div class="jp-tr">Apakah Anda sudah mengkonfirmasi ini?</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('こちらをご確認になりましたか')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>利用する<rt>りようする</rt></ruby></span></td>
+            <td data-label="Tipe"><span class="badge-type badge-kango">漢語</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk"><ruby>ご利用になる<rt>ごりようになる</rt></ruby></span></td>
+            <td data-label="Contoh">
+              <div class="jp-example">このサービスを<strong style="color:var(--accent)">ご利用になりますか</strong>？</div>
+              <div class="jp-tr">Apakah Anda akan menggunakan layanan ini?</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('このサービスをご利用になりますか')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>出発する<rt>しゅっぱつする</rt></ruby></span></td>
+            <td data-label="Tipe"><span class="badge-type badge-kango">漢語</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk"><ruby>ご出発になる<rt>ごしゅっぱつになる</rt></ruby></span></td>
+            <td data-label="Contoh">
+              <div class="jp-example">何時に<strong style="color:var(--accent)">ご出発になりますか</strong>？</div>
+              <div class="jp-tr">Jam berapa Anda akan berangkat?</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('何時にご出発になりますか')">🔊</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="danger-box">
+      <strong>⚠️ Kata Kerja yang TIDAK bisa pakai pola ini:</strong><br>
+      Kata kerja 1 suku kata / ます-stem pendek biasanya tidak wajar:<br>
+      ❌ <span class="jp">お寝になる</span> (寝る → pakai <span class="jp">お休みになる</span>)<br>
+      ❌ <span class="jp">お見になる</span> (見る → pakai <span class="jp">ご覧になる</span>)<br>
+      ✅ Untuk kata kerja seperti ini, gunakan bentuk Level 1.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 3 — SONKEIGO: BENTUK PASIF
+  ══════════════════════════════════ -->
+  <div class="tab-content" id="content3">
+    <div class="sec-title">Sonkeigo — Level 3: Bentuk Pasif 〜れる／られる</div>
+    <p class="sec-desc">
+      Bentuk pasif (<ruby>受身形<rt>うけみけい</rt></ruby>) juga berfungsi sebagai sonkeigo tingkat ringan.
+      Ini adalah cara paling mudah membentuk sonkeigo karena polanya sangat konsisten,
+      meski tingkat kesopanannya lebih rendah dari Level 1 dan 2.
+    </p>
+
+    <div class="formula">
+      <div class="formula-title">RUMUS BENTUK PASIF / HORMAT</div>
+      🔹 <strong>Godan (V1)</strong>: ubah huruf akhir ke baris あ → tambah <code>れる</code><br>
+      &nbsp;&nbsp;&nbsp;Contoh: <ruby>行く<rt>いく</rt></ruby> → 行か → <span class="jp" style="color:#86efac">行かれる</span><br><br>
+      🔸 <strong>Ichidan (V2)</strong>: hilangkan る → tambah <code>られる</code><br>
+      &nbsp;&nbsp;&nbsp;Contoh: <ruby>食べる<rt>たべる</rt></ruby> → 食べ → <span class="jp" style="color:#86efac">食べられる</span><br><br>
+      🔺 <strong>Irregular</strong>: する → <span class="jp" style="color:#86efac">される</span> &nbsp;|&nbsp; くる → <span class="jp" style="color:#86efac">こられる</span>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Kata Biasa</th>
+            <th>Bentuk Pasif/Hormat</th>
+            <th>Contoh Kalimat</th>
+            <th>🔊</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>行く<rt>いく</rt></ruby></span></td>
+            <td data-label="Bentuk Hormat"><span class="highlight-cell"><ruby>行かれる<rt>いかれる</rt></ruby></span></td>
+            <td data-label="Contoh">
+              <div class="jp-example"><ruby>部長<rt>ぶちょう</rt></ruby>はもう<strong style="color:var(--accent3)">行かれました</strong>。</div>
+              <div class="jp-tr">Manajer sudah pergi.</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('部長はもう行かれました')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>来る<rt>くる</rt></ruby></span></td>
+            <td data-label="Bentuk Hormat"><span class="highlight-cell"><ruby>来られる<rt>こられる</rt></ruby></span></td>
+            <td data-label="Contoh">
+              <div class="jp-example"><ruby>先生<rt>せんせい</rt></ruby>は昨日この学校に<strong style="color:var(--accent3)">来られました</strong>。</div>
+              <div class="jp-tr">Sensei datang ke sekolah ini kemarin.</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('先生は昨日この学校に来られました')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>書く<rt>かく</rt></ruby></span></td>
+            <td data-label="Bentuk Hormat"><span class="highlight-cell"><ruby>書かれる<rt>かかれる</rt></ruby></span></td>
+            <td data-label="Contoh">
+              <div class="jp-example"><ruby>部長<rt>ぶちょう</rt></ruby>がレポートを<strong style="color:var(--accent3)">書かれました</strong>。</div>
+              <div class="jp-tr">Manajer menulis laporan.</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('部長がレポートを書かれました')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>帰る<rt>かえる</rt></ruby></span></td>
+            <td data-label="Bentuk Hormat"><span class="highlight-cell"><ruby>帰られる<rt>かえられる</rt></ruby></span></td>
+            <td data-label="Contoh">
+              <div class="jp-example"><ruby>社長<rt>しゃちょう</rt></ruby>は5時に<strong style="color:var(--accent3)">帰られました</strong>。</div>
+              <div class="jp-tr">Direktur pulang jam 5.</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('社長は5時に帰られました')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>使う<rt>つかう</rt></ruby></span></td>
+            <td data-label="Bentuk Hormat"><span class="highlight-cell"><ruby>使われる<rt>つかわれる</rt></ruby></span></td>
+            <td data-label="Contoh">
+              <div class="jp-example">お<ruby>客様<rt>きゃくさま</rt></ruby>がこのサービスを<strong style="color:var(--accent3)">使われています</strong>。</div>
+              <div class="jp-tr">Pelanggan sedang menggunakan layanan ini.</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('お客様がこのサービスを使われています')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>食べる<rt>たべる</rt></ruby></span></td>
+            <td data-label="Bentuk Hormat"><span class="highlight-cell"><ruby>食べられる<rt>たべられる</rt></ruby></span></td>
+            <td data-label="Contoh">
+              <div class="jp-example"><ruby>先生<rt>せんせい</rt></ruby>は毎朝ご飯を<strong style="color:var(--accent3)">食べられます</strong>。</div>
+              <div class="jp-tr">Sensei makan nasi setiap pagi.</div>
+            </td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('先生は毎朝ご飯を食べられます')">🔊</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>📊 Perbandingan Tingkat Kesopanan</h4>
+    <div class="compare-row">
+      <div class="compare-label">BIASA (普通体)</div>
+      <div class="compare-jp"><span class="jp"><ruby>社長<rt>しゃちょう</rt></ruby>は報告書を読んだ。</span> <span class="lv-tag lv-plain">Informal</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-label">LEVEL 3 — 〜れる</div>
+      <div class="compare-jp"><span class="jp"><ruby>社長<rt>しゃちょう</rt></ruby>は報告書を<strong style="color:var(--accent3)">読まれた</strong>。</span> <span class="lv-tag lv-l3">Agak Sopan</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-label">LEVEL 2 — お〜になる</div>
+      <div class="compare-jp"><span class="jp"><ruby>社長<rt>しゃちょう</rt></ruby>は報告書を<strong style="color:var(--accent)">お読みになった</strong>。</span> <span class="lv-tag lv-l2">Sopan</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-label">LEVEL 1 — Kata Khusus</div>
+      <div class="compare-jp"><span class="jp"><ruby>社長<rt>しゃちょう</rt></ruby>は報告書を<strong style="color:var(--gold)">ご覧になった</strong>。</span> <span class="lv-tag lv-l1">Sangat Sopan</span></div>
+    </div>
+
+    <div class="warn-box" style="margin-top:20px">
+      <strong>⚠️ Ambiguitas — Pasif vs Hormat!</strong><br>
+      Bentuk 〜られる bisa bermakna <strong>pasif</strong> (dikenai tindakan) atau <strong>hormat</strong>. Konteks yang menentukan.<br><br>
+      <span class="jp"><ruby>先生<rt>せんせい</rt></ruby>に<strong>褒められました</strong></span>。→ PASIF: Saya <em>dipuji</em> oleh sensei.<br>
+      <span class="jp"><ruby>先生<rt>せんせい</rt></ruby>が<strong>話されました</strong></span>。→ HORMAT: Sensei <em>berbicara</em>.<br><br>
+      Kunci: perhatikan partikelnya — <strong>に</strong> (agen pasif) vs <strong>が／は</strong> (subjek hormat).
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 4 — SONKEIGO: 二重敬語
+  ══════════════════════════════════ -->
+  <div class="tab-content" id="content4">
+    <div class="sec-title">Sonkeigo — Level 4: 二重敬語 (Niju Keigo)</div>
+    <p class="sec-desc">
+      <ruby>二重敬語<rt>にじゅうけいご</rt></ruby> adalah penggunaan <strong>dua lapis keigo sekaligus</strong> pada satu kata kerja —
+      menggabungkan kata khusus Level 1 dengan bentuk pasif Level 3. Secara gramatikal dianggap <em>berlebihan</em>,
+      namun dalam praktik nyata — terutama di customer service, hotel, dan department store — ekspresi ini sangat lazim.
+    </p>
+
+    <div class="warn-box">
+      <strong>⚠️ Status Gramatikal:</strong><br>
+      Secara resmi, 二重敬語 <strong>tidak direkomendasikan</strong> oleh Badan Bahasa Jepang (<ruby>文化庁<rt>ぶんかちょう</rt></ruby>).
+      Namun bentuk seperti <span class="jp">おっしゃられる</span> sudah begitu luas dipakai sehingga banyak penutur asli tidak merasa ada yang aneh.
+      Pahami ini sebagai bagian dari <em>keigo praktis</em> dunia kerja.
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-label">おっしゃる ＋ られる</div>
+        <div class="card-main"><span style="color:var(--muted2)">おっしゃる</span> <span class="card-arrow">→</span> <span style="color:#fca5a5">おっしゃられる</span> <button class="speak-btn" onclick="speak('おっしゃられる')">🔊</button></div>
+        <div class="card-ex">お<ruby>客様<rt>きゃくさま</rt></ruby>が<span style="color:#fca5a5">おっしゃられた</span>通りです。<br><span style="color:var(--muted);font-size:.78rem">Seperti yang dikatakan oleh pelanggan.</span></div>
+      </div>
+      <div class="card">
+        <div class="card-label"><ruby>召し上がる<rt>めしあがる</rt></ruby> ＋ られる</div>
+        <div class="card-main"><span style="color:var(--muted2)"><ruby>召し上がる<rt>めしあがる</rt></ruby></span> <span class="card-arrow">→</span> <span style="color:#fca5a5"><ruby>召し上がられる<rt>めしあがられる</rt></ruby></span> <button class="speak-btn" onclick="speak('召し上がられる')">🔊</button></div>
+        <div class="card-ex">どうぞ<span style="color:#fca5a5">召し上がられて</span>ください。<br><span style="color:var(--muted);font-size:.78rem">Silakan menikmati makanannya.</span></div>
+      </div>
+      <div class="card">
+        <div class="card-label">いらっしゃる ＋ られる</div>
+        <div class="card-main"><span style="color:var(--muted2)">いらっしゃる</span> <span class="card-arrow">→</span> <span style="color:#fca5a5">いらっしゃられる</span> <button class="speak-btn" onclick="speak('いらっしゃられる')">🔊</button></div>
+        <div class="card-ex"><ruby>社長<rt>しゃちょう</rt></ruby>が<span style="color:#fca5a5">いらっしゃられます</span>。<br><span style="color:var(--muted);font-size:.78rem">Direktur akan hadir.</span></div>
+      </div>
+      <div class="card">
+        <div class="card-label">なさる ＋ られる</div>
+        <div class="card-main"><span style="color:var(--muted2)">なさる</span> <span class="card-arrow">→</span> <span style="color:#fca5a5">なさられる</span> <button class="speak-btn" onclick="speak('なさられる')">🔊</button></div>
+        <div class="card-ex">どのように<span style="color:#fca5a5">なさられますか</span>？<br><span style="color:var(--muted);font-size:.78rem">Bagaimana Anda ingin melakukannya?</span></div>
+      </div>
+    </div>
+
+    <h4>🏨 Konteks Penggunaan yang Tepat</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Konteks</th><th>Level yang Direkomendasikan</th><th>Catatan</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Konteks"><span style="color:var(--muted2)">Percakapan kantor sehari-hari</span></td>
+            <td data-label="Level"><span class="lv-tag lv-l2">Level 2</span> atau <span class="lv-tag lv-l3">Level 3</span></td>
+            <td data-label="Catatan" class="muted-cell">Cukup sopan, tidak berlebihan</td>
+          </tr>
+          <tr>
+            <td data-label="Konteks"><span style="color:var(--muted2)">Rapat formal / presentasi</span></td>
+            <td data-label="Level"><span class="lv-tag lv-l1">Level 1</span> atau <span class="lv-tag lv-l2">Level 2</span></td>
+            <td data-label="Catatan" class="muted-cell">Gunakan kata khusus jika tersedia</td>
+          </tr>
+          <tr>
+            <td data-label="Konteks"><span style="color:var(--muted2)">Customer service / hotel / dept. store</span></td>
+            <td data-label="Level"><span class="lv-tag lv-l4">Level 4</span> diterima</td>
+            <td data-label="Catatan" class="muted-cell">Meski berlebihan secara tata bahasa, ini sudah jadi norma industri</td>
+          </tr>
+          <tr>
+            <td data-label="Konteks"><span style="color:var(--muted2)">Email resmi / surat formal</span></td>
+            <td data-label="Level"><span class="lv-tag lv-l1">Level 1</span> + <span class="lv-tag lv-l2">Level 2</span></td>
+            <td data-label="Catatan" class="muted-cell">Hindari Level 4 dalam tulisan formal</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box">
+      <strong>💡 Saran Praktis:</strong><br>
+      Jika belajar untuk JLPT, cukup pahami Level 1–3 dengan baik. Level 4 lebih relevan untuk konteks kerja nyata di Jepang,
+      khususnya di industri jasa. Untuk ujian, fokuslah pada <em>mengenali</em> (bukan hanya menghasilkan) ekspresi Level 4.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 5 — KENJOUGO
+  ══════════════════════════════════ -->
+  <div class="tab-content" id="content5">
+    <div class="sec-title">Kenjougo — Pola Umum + Kata Kerja Khusus</div>
+    <p class="sec-desc">
+      Kenjougo digunakan ketika <strong>SAYA</strong> (atau kelompok saya) melakukan sesuatu
+      untuk / kepada orang yang dihormati. Tujuannya: merendahkan diri sendiri agar lawan bicara tampak lebih terhormat.
+    </p>
+
+    <div class="danger-box">
+      <strong>🚨 Ingat!</strong> Kenjougo selalu untuk tindakan SAYA sendiri — bukan tindakan orang lain!
+      Memakai kenjougo untuk tindakan atasan justru merendahkan mereka. ❌
+    </div>
+
+    <h4>📐 Pola Utama: お／ご〜します／いたします</h4>
+    <div class="formula">
+      <div class="formula-title">RUMUS DASAR KENJOUGO</div>
+      🔹 <strong>Wago</strong> (<ruby>和語<rt>わご</rt></ruby>): <code>お</code> ＋ ます-stem ＋ <code>します</code>／<code>いたします</code><br>
+      &nbsp;&nbsp;&nbsp;Contoh: <ruby>持ちます<rt>もちます</rt></ruby> → <span class="jp" style="color:var(--accent3)">お持ちします</span> (sopan) / <span class="jp" style="color:var(--accent3)">お持ちいたします</span> (sangat sopan)<br><br>
+      🔸 <strong>Kango</strong> (<ruby>漢語<rt>かんご</rt></ruby>): <code>ご</code> ＋ kata benda aksi ＋ <code>します</code>／<code>いたします</code><br>
+      &nbsp;&nbsp;&nbsp;Contoh: <ruby>案内します<rt>あんないします</rt></ruby> → <span class="jp" style="color:var(--accent3)">ご案内いたします</span> (bisnis formal)
+    </div>
+
+    <div class="register-note">
+      <div class="register-cell neutral">
+        <div class="register-cell-title">🔵 NETRAL SOPAN (日常)</div>
+        <div class="reg-formula">お〜します ／ ご〜します</div>
+        <div class="reg-example">Contoh: お<ruby>持<rt>も</rt></ruby>ちします、ご<ruby>案内<rt>あんない</rt></ruby>します<br>Dipakai: percakapan sehari-hari, toko, kelas</div>
+      </div>
+      <div class="register-cell formal">
+        <div class="register-cell-title">🟢 FORMAL BISNIS (ビジネス)</div>
+        <div class="reg-formula">お〜いたします ／ ご〜いたします</div>
+        <div class="reg-example">Contoh: お<ruby>持<rt>も</rt></ruby>ちいたします、ご<ruby>説明<rt>せつめい</rt></ruby>いたします<br>Dipakai: email bisnis, klien penting, dokumen resmi</div>
+      </div>
+    </div>
+
+    <!-- GOLD BOX ITADAKE -->
+    <div class="box-itadake">
+      <div class="itadake-title">🔥 Pola Paling Penting di Bisnis: 〜ていただけますか</div>
+      <p style="color:var(--muted2);font-size:.86rem;margin-bottom:8px;">
+        Pola ini adalah cara paling sopan dan natural untuk <strong style="color:var(--gold)">meminta tolong kepada atasan atau orang yang dihormati</strong>.
+        Berasal dari <ruby>動詞<rt>どうし</rt></ruby>て形 + いただく (kenjougo dari もらう) + けますか.
+      </p>
+      <div class="itadake-formula">
+        📐 <strong style="color:var(--gold)">Rumus:</strong> 動詞（て形） ＋ <strong>いただけますか</strong><br>
+        → Lebih sopan lagi: 動詞（て形） ＋ <strong>いただけませんか</strong><br>
+        → Paling sopan: 動詞（て形） ＋ <strong>いただけますでしょうか</strong>
+      </div>
+      <div class="itadake-ex">
+        <div class="itadake-row">
+          <div class="itadake-jp"><ruby>確認<rt>かくにん</rt></ruby>していただけますか？ <button class="speak-btn" onclick="speak('確認していただけますか')">🔊</button></div>
+          <div class="itadake-id">Bisakah Anda mengkonfirmasi? (meminta atasan melakukan konfirmasi)</div>
+        </div>
+        <div class="itadake-row">
+          <div class="itadake-jp"><ruby>資料<rt>しりょう</rt></ruby>を<ruby>送<rt>おく</rt></ruby>っていただけますか？ <button class="speak-btn" onclick="speak('資料を送っていただけますか')">🔊</button></div>
+          <div class="itadake-id">Bisakah Anda mengirimkan dokumennya?</div>
+        </div>
+        <div class="itadake-row">
+          <div class="itadake-jp">もう<ruby>一度<rt>いちど</rt></ruby>ご<ruby>説明<rt>せつめい</rt></ruby>いただけますでしょうか？ <button class="speak-btn" onclick="speak('もう一度ご説明いただけますでしょうか')">🔊</button></div>
+          <div class="itadake-id">Bisakah Anda menjelaskan sekali lagi? (sangat sopan, untuk klien penting)</div>
+        </div>
+        <div class="itadake-row">
+          <div class="itadake-jp"><ruby>少々<rt>しょうしょう</rt></ruby>お<ruby>待<rt>ま</rt></ruby>ちいただけますか？ <button class="speak-btn" onclick="speak('少々お待ちいただけますか')">🔊</button></div>
+          <div class="itadake-id">Bisakah Anda menunggu sebentar? (standar di customer service)</div>
+        </div>
+        <div class="itadake-row">
+          <div class="itadake-jp">こちらにご<ruby>記入<rt>きにゅう</rt></ruby>いただけますか？ <button class="speak-btn" onclick="speak('こちらにご記入いただけますか')">🔊</button></div>
+          <div class="itadake-id">Bisakah Anda mengisi di sini? (meminta tamu/klien mengisi formulir)</div>
+        </div>
+        <div class="itadake-row">
+          <div class="itadake-jp"><ruby>明日<rt>あした</rt></ruby>までにご<ruby>返信<rt>へんしん</rt></ruby>いただけますでしょうか？ <button class="speak-btn" onclick="speak('明日までにご返信いただけますでしょうか')">🔊</button></div>
+          <div class="itadake-id">Bisakah Anda membalas sampai besok? (standar email bisnis formal)</div>
+        </div>
+      </div>
+    </div>
+
+    <h4>⭐ Kata Kerja Kenjougo Khusus — Wajib Hafal!</h4>
+    <div class="card-grid">
+      <div class="vocab-card">
+        <div class="vocab-card-label">PERGI / DATANG</div>
+        <div class="vocab-card-jp"><ruby>行<rt>い</rt></ruby>きます・<ruby>来<rt>き</rt></ruby>ます</div>
+        <div class="vocab-card-reading">ikimasu / kimasu</div>
+        <div class="vocab-card-arrow">↓</div>
+        <div class="vocab-card-kenjo"><ruby>参<rt>まい</rt></ruby>ります <button class="speak-btn" onclick="speak('参ります')">🔊</button></div>
+        <div class="vocab-card-reading" style="color:var(--accent3)">mairimasu</div>
+        <div class="vocab-card-meaning">⭐ Super umum! Paling sering dipakai</div>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-card-label">ADA (untuk orang)</div>
+        <div class="vocab-card-jp">います</div>
+        <div class="vocab-card-reading">imasu</div>
+        <div class="vocab-card-arrow">↓</div>
+        <div class="vocab-card-kenjo">おります <button class="speak-btn" onclick="speak('おります')">🔊</button></div>
+        <div class="vocab-card-reading" style="color:var(--accent3)">orimasu</div>
+        <div class="vocab-card-meaning">Untuk mengatakan "saya ada di..."</div>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-card-label">MELAKUKAN</div>
+        <div class="vocab-card-jp">します</div>
+        <div class="vocab-card-reading">shimasu</div>
+        <div class="vocab-card-arrow">↓</div>
+        <div class="vocab-card-kenjo">いたします <button class="speak-btn" onclick="speak('いたします')">🔊</button></div>
+        <div class="vocab-card-reading" style="color:var(--accent3)">itashimasu</div>
+        <div class="vocab-card-meaning">Versi paling sopan dari する</div>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-card-label">BERKATA / MENGATAKAN</div>
+        <div class="vocab-card-jp"><ruby>言<rt>い</rt></ruby>います</div>
+        <div class="vocab-card-reading">iimasu</div>
+        <div class="vocab-card-arrow">↓</div>
+        <div class="vocab-card-kenjo"><ruby>申<rt>もう</rt></ruby>します <button class="speak-btn" onclick="speak('申します')">🔊</button></div>
+        <div class="vocab-card-reading" style="color:var(--accent3)">moushimasu</div>
+        <div class="vocab-card-meaning">Sering untuk perkenalan diri: ～と申します</div>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-card-label">MAKAN / MINUM / MENERIMA</div>
+        <div class="vocab-card-jp"><ruby>食<rt>た</rt></ruby>べます・<ruby>飲<rt>の</rt></ruby>みます</div>
+        <div class="vocab-card-reading">tabemasu / nomimasu</div>
+        <div class="vocab-card-arrow">↓</div>
+        <div class="vocab-card-kenjo">いただきます <button class="speak-btn" onclick="speak('いただきます')">🔊</button></div>
+        <div class="vocab-card-reading" style="color:var(--accent3)">itadakimasu</div>
+        <div class="vocab-card-meaning">Juga untuk menerima sesuatu dari atasan</div>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-card-label">BERTANYA / MENGUNJUNGI</div>
+        <div class="vocab-card-jp"><ruby>聞<rt>き</rt></ruby>きます・<ruby>訪<rt>たず</rt></ruby>ねます</div>
+        <div class="vocab-card-reading">kikimasu / tazunemasu</div>
+        <div class="vocab-card-arrow">↓</div>
+        <div class="vocab-card-kenjo"><ruby>伺<rt>うかが</rt></ruby>います <button class="speak-btn" onclick="speak('伺います')">🔊</button></div>
+        <div class="vocab-card-reading" style="color:var(--accent3)">ukagaimasu</div>
+        <div class="vocab-card-meaning">Satu kata, banyak arti! Sangat serbaguna</div>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-card-label">MELIHAT / MENONTON</div>
+        <div class="vocab-card-jp"><ruby>見<rt>み</rt></ruby>ます</div>
+        <div class="vocab-card-reading">mimasu</div>
+        <div class="vocab-card-arrow">↓</div>
+        <div class="vocab-card-kenjo"><ruby>拝見<rt>はいけん</rt></ruby>します <button class="speak-btn" onclick="speak('拝見します')">🔊</button></div>
+        <div class="vocab-card-reading" style="color:var(--accent3)">haiken shimasu</div>
+        <div class="vocab-card-meaning">Untuk melihat dokumen/kartu nama atasan</div>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-card-label">BERTEMU</div>
+        <div class="vocab-card-jp"><ruby>会<rt>あ</rt></ruby>います</div>
+        <div class="vocab-card-reading">aimasu</div>
+        <div class="vocab-card-arrow">↓</div>
+        <div class="vocab-card-kenjo">お<ruby>目<rt>め</rt></ruby>にかかります <button class="speak-btn" onclick="speak('お目にかかります')">🔊</button></div>
+        <div class="vocab-card-reading" style="color:var(--accent3)">ome ni kakarimasu</div>
+        <div class="vocab-card-meaning">Sangat formal, untuk pertemuan penting</div>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-card-label">TAHU / MENGETAHUI</div>
+        <div class="vocab-card-jp"><ruby>知<rt>し</rt></ruby>っています</div>
+        <div class="vocab-card-reading">shitte imasu</div>
+        <div class="vocab-card-arrow">↓</div>
+        <div class="vocab-card-kenjo"><ruby>存<rt>ぞん</rt></ruby>じています <button class="speak-btn" onclick="speak('存じています')">🔊</button></div>
+        <div class="vocab-card-reading" style="color:var(--accent3)">zonjite imasu</div>
+        <div class="vocab-card-meaning">Humble dari 知る. Negatif: 存じません</div>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-card-label">MEMBERIKAN (ke atasan)</div>
+        <div class="vocab-card-jp">あげます</div>
+        <div class="vocab-card-reading">agemasu</div>
+        <div class="vocab-card-arrow">↓</div>
+        <div class="vocab-card-kenjo"><ruby>差<rt>さ</rt></ruby>し<ruby>上<rt>あ</rt></ruby>げます <button class="speak-btn" onclick="speak('差し上げます')">🔊</button></div>
+        <div class="vocab-card-reading" style="color:var(--accent3)">sashiagemasu</div>
+        <div class="vocab-card-meaning">Memberi sesuatu ke orang yang lebih tinggi</div>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-card-label">MEMINJAM</div>
+        <div class="vocab-card-jp"><ruby>借<rt>か</rt></ruby>ります</div>
+        <div class="vocab-card-reading">karimasu</div>
+        <div class="vocab-card-arrow">↓</div>
+        <div class="vocab-card-kenjo"><ruby>拝借<rt>はいしゃく</rt></ruby>します <button class="speak-btn" onclick="speak('拝借します')">🔊</button></td>
+        <div class="vocab-card-reading" style="color:var(--accent3)">haishaku shimasu</div>
+        <div class="vocab-card-meaning">Sangat formal, meminjam dari atasan</div>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-card-label">MENERIMA / MENDAPAT</div>
+        <div class="vocab-card-jp">もらいます</div>
+        <div class="vocab-card-reading">moraimasu</div>
+        <div class="vocab-card-arrow">↓</div>
+        <div class="vocab-card-kenjo">いただきます <button class="speak-btn" onclick="speak('いただきます')">🔊</button></div>
+        <div class="vocab-card-reading" style="color:var(--accent3)">itadakimasu</div>
+        <div class="vocab-card-meaning">Sama dengan makan/minum — konteks berbeda</div>
+      </div>
+    </div>
+
+    <h4>📋 Tabel Pola お／ご〜します (Kenjougo)</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Kata Kerja Biasa</th>
+            <th>Kenjougo Natural Bisnis</th>
+            <th>Arti</th>
+            <th>Tipe</th>
+            <th>🔊</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>持<rt>も</rt></ruby>ちます</span><br><span class="jp-reading">mochimasu</span></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">お<ruby>持<rt>も</rt></ruby>ちいたします</span><br><span class="jp-reading">omochi itashimasu</span></td>
+            <td data-label="Arti">membawa / memegang</td>
+            <td data-label="Tipe"><span class="badge-type badge-wago">和語</span></td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('お持ちいたします')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>呼<rt>よ</rt></ruby>びます</span><br><span class="jp-reading">yobimasu</span></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">お<ruby>呼<rt>よ</rt></ruby>びいたします</span><br><span class="jp-reading">oyobi itashimasu</span></td>
+            <td data-label="Arti">memanggil</td>
+            <td data-label="Tipe"><span class="badge-type badge-wago">和語</span></td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('お呼びいたします')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>送<rt>おく</rt></ruby>ります</span><br><span class="jp-reading">okurimasu</span></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">お<ruby>送<rt>おく</rt></ruby>りいたします</span><br><span class="jp-reading">okuri itashimasu</span></td>
+            <td data-label="Arti">mengantar / mengirim</td>
+            <td data-label="Tipe"><span class="badge-type badge-wago">和語</span></td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('お送りいたします')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>見<rt>み</rt></ruby>せます</span><br><span class="jp-reading">misemasu</span></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">お<ruby>見<rt>み</rt></ruby>せいたします</span><br><span class="jp-reading">omise itashimasu</span></td>
+            <td data-label="Arti">menunjukkan</td>
+            <td data-label="Tipe"><span class="badge-type badge-wago">和語</span></td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('お見せいたします')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>伝<rt>つた</rt></ruby>えます</span><br><span class="jp-reading">tsutaemasu</span></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">お<ruby>伝<rt>つた</rt></ruby>えいたします</span><br><span class="jp-reading">otsutae itashimasu</span></td>
+            <td data-label="Arti">menyampaikan pesan</td>
+            <td data-label="Tipe"><span class="badge-type badge-wago">和語</span></td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('お伝えいたします')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>迎<rt>むか</rt></ruby>えます</span><br><span class="jp-reading">mukaemasu</span></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">お<ruby>迎<rt>むか</rt></ruby>えいたします</span><br><span class="jp-reading">omukae itashimasu</span></td>
+            <td data-label="Arti">menjemput</td>
+            <td data-label="Tipe"><span class="badge-type badge-wago">和語</span></td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('お迎えいたします')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>手伝<rt>てつだ</rt></ruby>います</span><br><span class="jp-reading">tetsudaimasu</span></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">お<ruby>手伝<rt>てつだ</rt></ruby>いいたします</span><br><span class="jp-reading">otetsudai itashimasu</span></td>
+            <td data-label="Arti">membantu</td>
+            <td data-label="Tipe"><span class="badge-type badge-wago">和語</span></td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('お手伝いいたします')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>貸<rt>か</rt></ruby>します</span><br><span class="jp-reading">kashimasu</span></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">お<ruby>貸<rt>か</rt></ruby>しいたします</span><br><span class="jp-reading">okashi itashimasu</span></td>
+            <td data-label="Arti">meminjamkan</td>
+            <td data-label="Tipe"><span class="badge-type badge-wago">和語</span></td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('お貸しいたします')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>案内<rt>あんない</rt></ruby>します</span><br><span class="jp-reading">annai shimasu</span></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">ご<ruby>案内<rt>あんない</rt></ruby>いたします</span><br><span class="jp-reading">go-annai itashimasu</span></td>
+            <td data-label="Arti">memandu / mengantar</td>
+            <td data-label="Tipe"><span class="badge-type badge-kango">漢語</span></td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('ご案内いたします')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>説明<rt>せつめい</rt></ruby>します</span><br><span class="jp-reading">setsumei shimasu</span></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">ご<ruby>説明<rt>せつめい</rt></ruby>いたします</span><br><span class="jp-reading">go-setsumei itashimasu</span></td>
+            <td data-label="Arti">menjelaskan</td>
+            <td data-label="Tipe"><span class="badge-type badge-kango">漢語</span></td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('ご説明いたします')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>連絡<rt>れんらく</rt></ruby>します</span><br><span class="jp-reading">renraku shimasu</span></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">ご<ruby>連絡<rt>れんらく</rt></ruby>いたします</span><br><span class="jp-reading">go-renraku itashimasu</span></td>
+            <td data-label="Arti">menghubungi</td>
+            <td data-label="Tipe"><span class="badge-type badge-kango">漢語</span></td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('ご連絡いたします')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>確認<rt>かくにん</rt></ruby>します</span><br><span class="jp-reading">kakunin shimasu</span></td>
+            <td data-label="Kenjougo"><span class="highlight-cell"><ruby>確認<rt>かくにん</rt></ruby>いたします</span><br><span class="jp-reading">kakunin itashimasu</span></td>
+            <td data-label="Arti">memastikan / konfirmasi</td>
+            <td data-label="Tipe"><span class="badge-type badge-kango">漢語</span></td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('確認いたします')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>報告<rt>ほうこく</rt></ruby>します</span><br><span class="jp-reading">houkoku shimasu</span></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">ご<ruby>報告<rt>ほうこく</rt></ruby>いたします</span><br><span class="jp-reading">go-houkoku itashimasu</span></td>
+            <td data-label="Arti">melaporkan</td>
+            <td data-label="Tipe"><span class="badge-type badge-kango">漢語</span></td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('ご報告いたします')">🔊</button></td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp"><ruby>紹介<rt>しょうかい</rt></ruby>します</span><br><span class="jp-reading">shoukai shimasu</span></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">ご<ruby>紹介<rt>しょうかい</rt></ruby>いたします</span><br><span class="jp-reading">go-shoukai itashimasu</span></td>
+            <td data-label="Arti">memperkenalkan</td>
+            <td data-label="Tipe"><span class="badge-type badge-kango">漢語</span></td>
+            <td data-label="🔊"><button class="speak-btn" onclick="speak('ご紹介いたします')">🔊</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>💬 Contoh Kalimat Lengkap Kenjougo</h4>
+    <div class="ex-list">
+      <div class="ex-item">
+        <div class="ex-num">CONTOH 01 — 参ります (pergi/datang)</div>
+        <div class="ex-row"><span class="ex-tag ex-tag-plain">普通</span><div><div class="ex-jp">明日、会社に行きます。<button class="speak-btn" onclick="speak('明日、会社に行きます')">🔊</button></div><div class="ex-id">Besok saya akan pergi ke kantor.</div></div></div>
+        <div class="ex-row"><span class="ex-tag ex-tag-keigo">謙譲</span><div><div class="ex-jp">明日、<ruby>会社<rt>かいしゃ</rt></ruby>に<strong style="color:var(--accent3)">参ります</strong>。<button class="speak-btn" onclick="speak('明日、会社に参ります')">🔊</button></div><div class="ex-id">Besok saya akan pergi ke kantor. (sopan)</div></div></div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-num">CONTOH 02 — 申します (berkata)</div>
+        <div class="ex-row"><span class="ex-tag ex-tag-plain">普通</span><div><div class="ex-jp">田中と言います。<button class="speak-btn" onclick="speak('田中と言います')">🔊</button></div><div class="ex-id">Nama saya Tanaka.</div></div></div>
+        <div class="ex-row"><span class="ex-tag ex-tag-keigo">謙譲</span><div><div class="ex-jp"><ruby>田中<rt>たなか</rt></ruby>と<strong style="color:var(--accent3)">申します</strong>。<button class="speak-btn" onclick="speak('田中と申します')">🔊</button></div><div class="ex-id">Nama saya Tanaka. (sopan, untuk perkenalan formal)</div></div></div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-num">CONTOH 03 — お持ちいたします (membawa)</div>
+        <div class="ex-row"><span class="ex-tag ex-tag-plain">普通</span><div><div class="ex-jp">荷物を持ちます。<button class="speak-btn" onclick="speak('荷物を持ちます')">🔊</button></div><div class="ex-id">Saya membawa barang bawaan.</div></div></div>
+        <div class="ex-row"><span class="ex-tag ex-tag-keigo">謙譲</span><div><div class="ex-jp">お<ruby>荷物<rt>にもつ</rt></ruby>を<strong style="color:var(--accent3)">お持ちいたします</strong>。<button class="speak-btn" onclick="speak('お荷物をお持ちいたします')">🔊</button></div><div class="ex-id">Biar saya yang membawakan barang bawaan Anda. (sopan formal)</div></div></div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-num">CONTOH 04 — 伺います (bertanya/mengunjungi)</div>
+        <div class="ex-row"><span class="ex-tag ex-tag-plain">普通</span><div><div class="ex-jp">明日、お宅に行きます。<button class="speak-btn" onclick="speak('明日、お宅に行きます')">🔊</button></div><div class="ex-id">Besok saya akan pergi ke rumah Anda.</div></div></div>
+        <div class="ex-row"><span class="ex-tag ex-tag-keigo">謙譲</span><div><div class="ex-jp">明日、お<ruby>宅<rt>たく</rt></ruby>に<strong style="color:var(--accent3)">伺います</strong>。<button class="speak-btn" onclick="speak('明日、お宅に伺います')">🔊</button></div><div class="ex-id">Besok saya akan mengunjungi rumah Anda. (sopan)</div></div></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>🧠 Trik Menghafal:</strong><br>
+      Buat cerita singkat: "Saya (<ruby>参<rt>まい</rt></ruby>ります) PERGI ke tempat atasan, lalu (おります) ADA di sana,
+      kemudian (<ruby>申<rt>もう</rt></ruby>します) BILANG nama saya, (<ruby>拝見<rt>はいけん</rt></ruby>します) LIHAT dokumennya,
+      dan (いただきます) TERIMA kopi dari beliau. Setelah itu (<ruby>伺<rt>うかが</rt></ruby>います) TANYA satu pertanyaan."
+    </div>
+
+    <h4>📋 Referensi Cepat — Sonkeigo vs Kenjougo</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Kata Biasa</th>
+            <th>Sonkeigo (⬆️ orang lain)</th>
+            <th>Kenjougo (⬇️ diri sendiri)</th>
+            <th>Arti</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp">いく・くる・いる</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk">いらっしゃる</span> <button class="speak-btn" onclick="speak('いらっしゃる')">🔊</button></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">参ります</span> <button class="speak-btn" onclick="speak('参ります')">🔊</button></td>
+            <td data-label="Arti">pergi / datang / ada</td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp">いう</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk">おっしゃる</span> <button class="speak-btn" onclick="speak('おっしゃる')">🔊</button></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">申します</span> <button class="speak-btn" onclick="speak('申します')">🔊</button></td>
+            <td data-label="Arti">berkata</td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp">たべる・のむ</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk">召し上がる</span> <button class="speak-btn" onclick="speak('召し上がる')">🔊</button></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">いただきます</span> <button class="speak-btn" onclick="speak('いただきます')">🔊</button></td>
+            <td data-label="Arti">makan / minum</td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp">みる</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk">ご覧になる</span> <button class="speak-btn" onclick="speak('ご覧になる')">🔊</button></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">拝見します</span> <button class="speak-btn" onclick="speak('拝見します')">🔊</button></td>
+            <td data-label="Arti">melihat</td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp">する</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk">なさる</span> <button class="speak-btn" onclick="speak('なさる')">🔊</button></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">いたします</span> <button class="speak-btn" onclick="speak('いたします')">🔊</button></td>
+            <td data-label="Arti">melakukan</td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp">しっている</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk">ご存じだ</span> <button class="speak-btn" onclick="speak('ご存じだ')">🔊</button></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">存じています</span> <button class="speak-btn" onclick="speak('存じています')">🔊</button></td>
+            <td data-label="Arti">mengetahui</td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp">あう</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk" style="font-size:.9rem">お会いになる</span> <button class="speak-btn" onclick="speak('お会いになる')">🔊</button></td>
+            <td data-label="Kenjougo"><span class="highlight-cell" style="font-size:.88rem">お目にかかります</span> <button class="speak-btn" onclick="speak('お目にかかります')">🔊</button></td>
+            <td data-label="Arti">bertemu</td>
+          </tr>
+          <tr>
+            <td data-label="Kata Biasa"><span class="jp">くれる・もらう</span></td>
+            <td data-label="Sonkeigo"><span class="highlight-sonk">くださる</span> <button class="speak-btn" onclick="speak('くださる')">🔊</button></td>
+            <td data-label="Kenjougo"><span class="highlight-cell">いただきます</span> <button class="speak-btn" onclick="speak('いただきます')">🔊</button></td>
+            <td data-label="Arti">memberi / menerima</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box box-gold">
+      <strong>🌸 Penutup — がんばって！</strong><br>
+      Keigo adalah salah satu ciri khas kebudayaan Jepang yang paling mendalam. Rasa hormat tidak hanya diungkapkan lewat pujian,
+      tapi juga melalui cara kita berbicara — memuliakan orang lain (sonkeigo) dan merendahkan diri sendiri (kenjougo).
+      Dengan menguasai keigo, kamu tidak hanya belajar bahasa Jepang, tapi memahami nilai-nilai budayanya. 💪🇯🇵
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 6 — PERBANDINGAN + KUIS + RINGKASAN
+  ══════════════════════════════════ -->
+  <div class="tab-content" id="content6">
+    <div class="sec-title">Perbandingan + Kuis + Ringkasan Lengkap</div>
+    <p class="sec-desc">Latihan interaktif + drag &amp; drop + ringkasan semua level keigo dalam satu halaman.</p>
+
+    <!-- RINGKASAN GRID -->
+    <h4>📦 Ringkasan Semua Level Keigo</h4>
+    <div class="summary-grid">
+      <div class="summary-card" style="border-color:rgba(56,189,248,.3)">
+        <div class="summary-lv" style="color:var(--accent)">SK1</div>
+        <div class="summary-name" style="color:var(--accent)">Sonkeigo — Kata Khusus</div>
+        <div class="summary-rule">いらっしゃる、おっしゃる、召し上がる、ご覧になる、なさる...</div>
+      </div>
+      <div class="summary-card" style="border-color:rgba(129,140,248,.3)">
+        <div class="summary-lv" style="color:var(--accent2)">SK2</div>
+        <div class="summary-name" style="color:var(--accent2)">Sonkeigo — お／ごになる</div>
+        <div class="summary-rule">Pola produktif. お untuk wago, ご untuk kango + になる.</div>
+      </div>
+      <div class="summary-card" style="border-color:rgba(52,211,153,.3)">
+        <div class="summary-lv" style="color:var(--accent3)">SK3</div>
+        <div class="summary-name" style="color:var(--accent3)">Sonkeigo — 〜れる／られる</div>
+        <div class="summary-rule">Bentuk pasif sebagai hormat. Lebih ringan, umum di percakapan.</div>
+      </div>
+      <div class="summary-card" style="border-color:rgba(248,113,113,.3)">
+        <div class="summary-lv" style="color:#fca5a5">SK4</div>
+        <div class="summary-name" style="color:#fca5a5">Sonkeigo — 二重敬語</div>
+        <div class="summary-rule">Dua lapis keigo. Berlebihan secara tata bahasa, lazim di customer service.</div>
+      </div>
+      <div class="summary-card" style="border-color:rgba(52,211,153,.4);grid-column:1 / -1">
+        <div class="summary-lv" style="color:var(--accent3)">KJ</div>
+        <div class="summary-name" style="color:var(--accent3)">Kenjougo — 謙譲語</div>
+        <div class="summary-rule">参ります、おります、いたします、申します、いただきます、伺います、拝見します... お／ごします untuk tindakan diri sendiri.</div>
+      </div>
+    </div>
+
+    <!-- PROGRESS BAR SONKEIGO -->
+    <h4>📐 Tingkat Kesopanan Sonkeigo</h4>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:28px;">
+      <div class="polite-bar">
+        <div class="polite-label"><span><ruby>普通体<rt>ふつうたい</rt></ruby> (Biasa)</span><span>⭐</span></div>
+        <div class="polite-track"><div class="polite-fill" id="pb1" style="background:#475569;"></div></div>
+      </div>
+      <div class="polite-bar">
+        <div class="polite-label"><span>SK Level 3 — 〜れる／られる</span><span>⭐⭐</span></div>
+        <div class="polite-track"><div class="polite-fill" id="pb2" style="background:var(--accent3);"></div></div>
+      </div>
+      <div class="polite-bar">
+        <div class="polite-label"><span>SK Level 2 — お／ご〜になる</span><span>⭐⭐⭐</span></div>
+        <div class="polite-track"><div class="polite-fill" id="pb3" style="background:var(--accent);"></div></div>
+      </div>
+      <div class="polite-bar">
+        <div class="polite-label"><span>SK Level 1 — Kata Khusus</span><span>⭐⭐⭐⭐</span></div>
+        <div class="polite-track"><div class="polite-fill" id="pb4" style="background:var(--accent2);"></div></div>
+      </div>
+      <div class="polite-bar">
+        <div class="polite-label"><span>SK Level 4 — 二重敬語</span><span>⭐⭐⭐⭐⭐</span></div>
+        <div class="polite-track"><div class="polite-fill" id="pb5" style="background:linear-gradient(90deg,var(--accent2),var(--red));"></div></div>
+      </div>
+    </div>
+
+    <!-- PROGRESS BAR KESELURUHAN -->
+    <h4>📐 Skala Keigo Secara Keseluruhan</h4>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:28px;">
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Bahasa Biasa (普通体)</span><span>⭐</span></div>
+        <div class="progress-track"><div class="progress-fill" id="kpb1" style="background:#64748b;"></div></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Teineigo (〜ます・〜です)</span><span>⭐⭐</span></div>
+        <div class="progress-track"><div class="progress-fill" id="kpb2" style="background:var(--accent2);"></div></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Sonkeigo — Memuliakan orang lain</span><span>⭐⭐⭐</span></div>
+        <div class="progress-track"><div class="progress-fill" id="kpb3" style="background:var(--accent);"></div></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Kenjougo — Merendahkan diri sendiri</span><span>⭐⭐⭐⭐</span></div>
+        <div class="progress-track"><div class="progress-fill" id="kpb4" style="background:var(--accent3);"></div></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Sonkeigo + Kenjougo (kombinasi penuh)</span><span>⭐⭐⭐⭐⭐</span></div>
+        <div class="progress-track"><div class="progress-fill" id="kpb5" style="background:linear-gradient(90deg,var(--accent3),var(--gold));"></div></div>
+      </div>
+    </div>
+
+    <!-- KUIS -->
+    <h4>🎯 Kuis Interaktif (Sonkeigo + Kenjougo)</h4>
+    <div class="quiz-score">Skor: <span id="scoreNum">0</span> / <span id="totalNum">0</span></div>
+    <div id="quizContainer"></div>
+    <button onclick="resetQuiz()" style="margin-top:16px;padding:10px 24px;border-radius:10px;background:rgba(56,189,248,.1);border:1px solid var(--accent);color:var(--accent);cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-weight:600;font-size:.85rem;">🔄 Ulangi Kuis</button>
+
+    <!-- DRAG & DROP -->
+    <h4 style="margin-top:36px">🎮 Latihan Drag &amp; Drop — Kenjougo</h4>
+    <p style="font-size:.84rem;color:var(--muted2);margin-bottom:14px;">Pasangkan kata kerja biasa dengan bentuk kenjougo yang tepat. Drag chip ke kotak, atau tap chip lalu tap kotak!</p>
+    <div class="dnd-options" id="dndOptions"></div>
+    <div class="dnd-game" id="dndGame"></div>
+    <button class="dnd-check-btn" onclick="checkDnd()">✅ Periksa Jawaban</button>
+    <div class="dnd-result" id="dndResult"></div>
+
+    <!-- TABEL REFERENSI CEPAT FINAL -->
+    <h4 style="margin-top:36px">📋 Referensi Cepat — Semua Keigo</h4>
+    <div class="info-box">
+      <strong>📌 Panduan Singkat:</strong><br>
+      Subjek = atasan/klien → pakai <strong style="color:var(--accent)">Sonkeigo</strong> ⬆️ &nbsp;|&nbsp;
+      Subjek = saya sendiri → pakai <strong style="color:var(--accent3)">Kenjougo</strong> ⬇️ &nbsp;|&nbsp;
+      Semua situasi formal → tambahkan <strong>Teineigo</strong> (〜ます・〜です)
+    </div>
+
+    <div class="box box-gold">
+      <strong>🌸 Penutup — がんばって！</strong><br>
+      Keigo adalah salah satu ciri khas kebudayaan Jepang yang paling mendalam. Rasa hormat tidak hanya diungkapkan lewat pujian,
+      tapi juga melalui cara kita berbicara — memuliakan orang lain (sonkeigo) dan merendahkan diri sendiri (kenjougo).
+      Dengan menguasai keigo, kamu tidak hanya belajar bahasa Jepang, tapi memahami nilai-nilai budayanya. 💪🇯🇵
+    </div>
+  </div>
+
+</div><!-- end wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <strong><ruby>敬語<rt>けいご</rt></ruby>完全版 — Sonkeigo + Kenjougo Interaktif</strong><br>
+  Menggabungkan <strong>Sonkeigo Final</strong> (4 Level + Niju Keigo) dan <strong>Kenjougo Interaktif</strong> (Minna no Nihongo Bab 49–50)<br>
+  Mencakup materi JLPT N4–N3 · Web Speech API · Drag &amp; Drop · Kuis Interaktif · Dark/Light Mode<br>
+  Referensi: <ruby>文化庁<rt>ぶんかちょう</rt></ruby> 敬語の指針 · Minna no Nihongo · 日本語能力試験<br>
+  <span style="color:var(--border);">──────────────────────────────────</span><br>
+  Belajar keigo memang butuh waktu, tapi kamu pasti bisa menguasainya! ✨
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  // ─── Tab Switching ───
+  window.showTab = function(n) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('content' + n).classList.add('active');
+    document.getElementById('tab' + n).classList.add('active');
+    if (n === 6) {
+      if (!quizBuilt) buildQuiz();
+      if (!dndBuilt) buildDnd();
+      animateProgress();
+    }
+    document.getElementById('content' + n).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  // ─── Dark Mode Toggle ───
+  window.toggleTheme = function() {
+    const html = document.documentElement;
+    const btn = document.getElementById('themeBtn');
+    if (html.getAttribute('data-theme') === 'dark') {
+      html.setAttribute('data-theme', 'light');
+      btn.textContent = '🌙 Dark';
+    } else {
+      html.setAttribute('data-theme', 'dark');
+      btn.textContent = '☀️ Light';
+    }
+  };
+
+  // ─── Speech ───
+  window.speak = function(text) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'ja-JP';
+    utter.rate = 0.85;
+    utter.pitch = 1.0;
+    const voices = window.speechSynthesis.getVoices();
+    const jpVoice = voices.find(v => v.lang === 'ja-JP' || v.lang.startsWith('ja'));
+    if (jpVoice) utter.voice = jpVoice;
+    window.speechSynthesis.speak(utter);
+  };
+  if (window.speechSynthesis) {
+    window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+  }
+
+  // ─── Toast ───
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // ─── Copy Anki ───
+  window.copyAnki = function() {
+    const ankiData = [
+      // Sonkeigo Level 1
+      "いらっしゃる\tいる/行く/来る の尊敬語\tSonkeigo: ada/pergi/datang (untuk orang yang lebih tinggi)",
+      "おっしゃる\t言う の尊敬語\tSonkeigo: berkata/mengatakan",
+      "召し上がる\t食べる/飲む の尊敬語\tSonkeigo: makan/minum",
+      "ご覧になる\t見る の尊敬語\tSonkeigo: melihat/menonton",
+      "なさる\tする の尊敬語\tSonkeigo: melakukan",
+      "ご存じだ\t知っている の尊敬語\tSonkeigo: mengetahui",
+      "くださる\tくれる の尊敬語\tSonkeigo: memberi (ke saya)",
+      "お休みになる\t寝る の尊敬語\tSonkeigo: tidur/beristirahat",
+      "お召しになる\t着る の尊敬語\tSonkeigo: memakai (baju)",
+      // Sonkeigo Level 2
+      "お読みになる\t読む の尊敬語 (L2)\tSonkeigo pola: membaca",
+      "お使いになる\t使う の尊敬語 (L2)\tSonkeigo pola: menggunakan",
+      "ご確認になる\t確認する の尊敬語 (L2)\tSonkeigo pola: mengkonfirmasi",
+      "ご利用になる\t利用する の尊敬語 (L2)\tSonkeigo pola: menggunakan layanan",
+      "お帰りになる\t帰る の尊敬語 (L2)\tSonkeigo pola: pulang/kembali",
+      // Kenjougo
+      "参ります\t行く/来る の謙譲語\tKenjougo: pergi/datang",
+      "おります\tいる の謙譲語\tKenjougo: ada (saya)",
+      "いたします\tする の謙譲語\tKenjougo: melakukan (saya)",
+      "申します\t言う の謙譲語\tKenjougo: berkata/perkenalan",
+      "いただきます\t食べる/もらう の謙譲語\tKenjougo: makan/menerima",
+      "伺います\t聞く/訪ねる の謙譲語\tKenjougo: bertanya/mengunjungi",
+      "拝見します\t見る の謙譲語\tKenjougo: melihat (dokumen atasan)",
+      "お目にかかります\t会う の謙譲語\tKenjougo: bertemu (sangat formal)",
+      "存じています\t知っている の謙譲語\tKenjougo: mengetahui",
+      "差し上げます\tあげる の謙譲語\tKenjougo: memberikan (ke atasan)",
+      "拝借します\t借りる の謙譲語\tKenjougo: meminjam (dari atasan)",
+    ];
+    const text = ankiData.join('\n');
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('✅ Data Anki berhasil disalin! (25 kartu: Sonkeigo + Kenjougo)');
+    }).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('✅ Data Anki disalin! Paste ke Anki dengan format TSV.');
+    });
+  };
+
+  // ─── Animate Progress Bars ───
+  function animateProgress() {
+    const sonkeigoFills = [
+      { id: 'pb1', w: '15%' },
+      { id: 'pb2', w: '45%' },
+      { id: 'pb3', w: '68%' },
+      { id: 'pb4', w: '85%' },
+      { id: 'pb5', w: '100%' },
+    ];
+    const kenjougoFills = [
+      { id: 'kpb1', w: '20%' },
+      { id: 'kpb2', w: '40%' },
+      { id: 'kpb3', w: '65%' },
+      { id: 'kpb4', w: '85%' },
+      { id: 'kpb5', w: '100%' },
+    ];
+    [...sonkeigoFills, ...kenjougoFills].forEach((item, i) => {
+      const el = document.getElementById(item.id);
+      if (el) setTimeout(() => { el.style.width = item.w; }, i * 80);
+    });
+  }
+
+  // ══════════════════════════════════════════
+  // QUIZ DATA — 15 soal, seimbang Sonkeigo + Kenjougo
+  // ══════════════════════════════════════════
+  const quizData = [
+    // ─── Sonkeigo ───
+    {
+      q: '先生、何時に学校に___ますか？(いる → Sonkeigo)',
+      options: ['います', 'いらっしゃい', 'おります', 'ございます'],
+      correct: 1,
+      explain: '「いる」の尊敬語は「いらっしゃる」。形は <strong>いらっしゃいます</strong>。'
+    },
+    {
+      q: 'どうぞこのケーキを___ください。(食べる → Sonkeigo)',
+      options: ['食べて', 'いただいて', '召し上がって', '食べられて'],
+      correct: 2,
+      explain: '「食べる」の尊敬語は「<strong>召し上がる</strong>」。目上の人に使う。'
+    },
+    {
+      q: '先生はもうこの報告書を___ですか？(読む → お〜になる)',
+      options: ['読まれます', 'お読みになり', 'ご読みになり', 'お読みに'],
+      correct: 1,
+      explain: '「読む」はwago → お + 読み + になる。<strong>お読みになりましたか</strong>？'
+    },
+    {
+      q: '山田さんを___ですか？(知っている → Sonkeigo)',
+      options: ['ご知りですか', 'ご存じですか', '知られますか', 'お知りですか'],
+      correct: 1,
+      explain: '「知っている」の尊敬語は「<strong>ご存じだ</strong>」。形は<strong>ご存じです</strong>。'
+    },
+    {
+      q: '先生が「明日休みです」と___ました。(言う → Sonkeigo)',
+      options: ['言われ', 'おっしゃい', 'おっしゃられ', 'お言いになり'],
+      correct: 1,
+      explain: '「言う」の尊敬語は「おっしゃる」。過去形は<strong>おっしゃいました</strong>。'
+    },
+    {
+      q: 'お客様がこのサービスを___います。(使う → Level 3 受身/敬語)',
+      options: ['お使いになって', '使われて', 'ご使用して', 'お使いされて'],
+      correct: 1,
+      explain: '「使う」の受身形（Level 3）は「<strong>使われる</strong>」。'
+    },
+    {
+      q: '社長はもう会社に___か？(来る → Sonkeigo Level 1)',
+      options: ['来られました', 'いらっしゃいました', 'おいでしました', 'まいりました'],
+      correct: 1,
+      explain: '「来る」の尊敬語 Level 1 は「<strong>いらっしゃる</strong>」。Level 3 の「来られる」より格上。'
+    },
+    {
+      q: '素敵なスーツを___ですね。(着る → Sonkeigo)',
+      options: ['着られています', 'お召しになっています', 'お着になっています', 'お召されています'],
+      correct: 1,
+      explain: '「着る」の尊敬語は「<strong>お召しになる</strong>」(omeshi ni naru)。'
+    },
+    // ─── Kenjougo ───
+    {
+      q: '私はあとで会社に___。(行く → Kenjougo)',
+      options: ['いらっしゃいます', '参ります', 'おります', 'おいでになります'],
+      correct: 1,
+      explain: '「行く」の謙譲語は「<strong>参ります</strong>」(mairimasu)。自分の行動に使う。'
+    },
+    {
+      q: '田中と___。(言う → 自己紹介のKenjougo)',
+      options: ['おっしゃいます', '申します', '言われます', 'いたします'],
+      correct: 1,
+      explain: '「言う」の謙譲語は「<strong>申します</strong>」。自己紹介で田中と申します。'
+    },
+    {
+      q: 'お荷物を___。(持つ → Kenjougo bisnis formal)',
+      options: ['お持ちします', 'お持ちになります', '持たれます', '持ちいたします'],
+      correct: 0,
+      explain: '「持つ」の謙譲語パターンは「お + 持ち + します」= <strong>お持ちします</strong>。主語は私。'
+    },
+    {
+      q: '社長にご質問を___。(聞く → Kenjougo)',
+      options: ['聞かれます', 'お聞きになります', '伺います', '拝聴します'],
+      correct: 2,
+      explain: '「聞く/訪ねる」の謙譲語は「<strong>伺います</strong>」(ukagaimasu)。目上の人に質問するとき。'
+    },
+    {
+      q: '部長の名刺を___。(見る → Kenjougo)',
+      options: ['ご覧になります', '見られます', '拝見します', 'お見になります'],
+      correct: 2,
+      explain: '「見る」の謙譲語は「<strong>拝見します</strong>」(haiken shimasu)。目上の人のものを見るとき。'
+    },
+    {
+      q: '社長は今___。(いる → Sonkeigo, 社長 = subjek)',
+      options: ['おります', 'います', 'いらっしゃいます', '参ります'],
+      correct: 2,
+      explain: '社長 (orang lebih tinggi) の存在 → Sonkeigo: <strong>いらっしゃいます</strong>。おります = kenjougo untuk diri sendiri.'
+    },
+    {
+      q: '来週、御社に___予定です。(行く → Kenjougo, bisnis email)',
+      options: ['いらっしゃる', '参る', 'おいでになる', 'まいります'],
+      correct: 3,
+      explain: '自分が行く場合、謙譲語の「<strong>参ります</strong>」を使う。形: 参る → まいります。'
+    },
+  ];
+
+  let score = 0, answered = 0;
+  let quizBuilt = false;
+
+  function updateScore() {
+    document.getElementById('scoreNum').textContent = score;
+    document.getElementById('totalNum').textContent = quizData.length;
+  }
+
+  function buildQuiz() {
+    quizBuilt = true;
+    score = 0; answered = 0;
+    updateScore();
+    const container = document.getElementById('quizContainer');
+    container.innerHTML = '';
+    quizData.forEach((q, i) => {
+      const card = document.createElement('div');
+      card.className = 'quiz-card';
+      card.id = 'qcard' + i;
+      card.innerHTML = `
+        <div class="quiz-q" style="font-size:.78rem;color:var(--muted);margin-bottom:6px">問題 ${i+1} / ${quizData.length}</div>
+        <div class="quiz-q">${q.q.replace(/___/, '<span class="blank">＿＿＿</span>')}</div>
+        <div class="quiz-options">
+          ${q.options.map((opt, j) => `<button class="quiz-opt" onclick="checkAnswer(${i},${j})" id="qopt${i}_${j}">${opt}</button>`).join('')}
+        </div>
+        <div class="quiz-feedback" id="qfb${i}"></div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  window.checkAnswer = function(qi, oi) {
+    const q = quizData[qi];
+    const card = document.getElementById('qcard' + qi);
+    if (card.dataset.done) return;
+    card.dataset.done = '1';
+    card.classList.add('answered');
+    answered++;
+    card.querySelectorAll('.quiz-opt').forEach(b => b.disabled = true);
+    const fb = document.getElementById('qfb' + qi);
+    if (oi === q.correct) {
+      score++;
+      document.getElementById(`qopt${qi}_${oi}`).classList.add('correct');
+      fb.innerHTML = `<span style="color:#86efac">✅ Benar!</span> ${q.explain}`;
+    } else {
+      document.getElementById(`qopt${qi}_${oi}`).classList.add('wrong');
+      document.getElementById(`qopt${qi}_${q.correct}`).classList.add('correct');
+      fb.innerHTML = `<span style="color:#fca5a5">❌ Salah.</span> ${q.explain}`;
+    }
+    updateScore();
+    if (answered === quizData.length) {
+      const pct = Math.round(score / quizData.length * 100);
+      const msg = pct === 100 ? '🎉 Sempurna! すごい！' : pct >= 80 ? '👏 Hebat! よくできました！' : pct >= 60 ? '👍 Bagus! まあまあです。' : '📚 Perlu latihan lagi! もっと練習しよう！';
+      const banner = document.createElement('div');
+      banner.className = 'final-banner';
+      banner.innerHTML = `
+        <div class="score-big">${score} / ${quizData.length}</div>
+        <div class="score-msg">${msg} (${pct}%)</div>
+      `;
+      document.getElementById('quizContainer').appendChild(banner);
+    }
+  };
+
+  window.resetQuiz = function() {
+    quizBuilt = false;
+    const banner = document.querySelector('.final-banner');
+    if (banner) banner.remove();
+    buildQuiz();
+  };
+
+  // ══════════════════════════════════════════
+  // DRAG & DROP — 11 item untuk latihan lengkap
+  // ══════════════════════════════════════════
+  const dndData = [
+    { plain: '行きます', answer: '参ります' },
+    { plain: 'います', answer: 'おります' },
+    { plain: '言います', answer: '申します' },
+    { plain: '見ます', answer: '拝見します' },
+    { plain: '食べます', answer: 'いただきます' },
+    { plain: '伝えます', answer: 'お伝えいたします' },
+    { plain: '案内します', answer: 'ご案内いたします' },
+    { plain: '聞きます', answer: '伺います' },
+    { plain: '会います', answer: 'お目にかかります' },
+    { plain: '持ちます', answer: 'お持ちいたします' },
+    { plain: 'します', answer: 'いたします' },
+  ];
+
+  let dndBuilt = false;
+  let dragTarget = null;
+  let selectedChip = null;
+
+  function clearChipSelection() {
+    if (selectedChip) {
+      selectedChip.classList.remove('selected');
+      selectedChip = null;
+    }
+  }
+
+  function buildDnd() {
+    if (dndBuilt) return;
+    dndBuilt = true;
+
+    const answers = [...dndData.map(d => d.answer)].sort(() => Math.random() - 0.5);
+    const optContainer = document.getElementById('dndOptions');
+    const gameContainer = document.getElementById('dndGame');
+    optContainer.innerHTML = '';
+    gameContainer.innerHTML = '';
+
+    answers.forEach(ans => {
+      const chip = document.createElement('div');
+      chip.className = 'dnd-chip';
+      chip.textContent = ans;
+      chip.dataset.value = ans;
+      chip.draggable = true;
+
+      chip.addEventListener('dragstart', e => {
+        dragTarget = chip;
+        chip.classList.add('dragging');
+        e.dataTransfer.setData('text/plain', ans);
+        clearChipSelection();
+      });
+      chip.addEventListener('dragend', () => chip.classList.remove('dragging'));
+      chip.addEventListener('click', () => {
+        if (chip.classList.contains('used')) return;
+        if (selectedChip === chip) { clearChipSelection(); return; }
+        clearChipSelection();
+        selectedChip = chip;
+        chip.classList.add('selected');
+      });
+      optContainer.appendChild(chip);
+    });
+
+    const hint = document.createElement('div');
+    hint.style.cssText = 'font-size:.76rem;color:var(--accent);margin-top:6px;min-height:18px;';
+    hint.textContent = '💡 Tap kata → tap kotak tujuan. Tap kotak terisi untuk mengembalikan.';
+    optContainer.parentNode.insertBefore(hint, optContainer.nextSibling);
+
+    dndData.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.className = 'dnd-item';
+      row.innerHTML = `
+        <div class="dnd-word">${item.plain} <button class="speak-btn" onclick="speak('${item.plain}')">🔊</button></div>
+        <div class="dnd-arrow">→</div>
+        <div class="dnd-drop" id="drop${i}" data-index="${i}">Taruh di sini</div>
+      `;
+      const drop = row.querySelector('.dnd-drop');
+
+      drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('drag-over'); });
+      drop.addEventListener('dragleave', () => drop.classList.remove('drag-over'));
+      drop.addEventListener('drop', e => {
+        e.preventDefault();
+        drop.classList.remove('drag-over');
+        const val = e.dataTransfer.getData('text/plain');
+        const prev = drop.dataset.filled;
+        if (prev) restoreChip(prev);
+        drop.textContent = val;
+        drop.dataset.filled = val;
+        drop.classList.add('filled');
+        drop.classList.remove('correct-drop', 'wrong-drop');
+        if (dragTarget) dragTarget.classList.add('used');
+      });
+      drop.addEventListener('click', () => {
+        if (selectedChip) {
+          const val = selectedChip.dataset.value;
+          const prev = drop.dataset.filled;
+          if (prev) restoreChip(prev);
+          drop.textContent = val;
+          drop.dataset.filled = val;
+          drop.classList.add('filled');
+          drop.classList.remove('correct-drop', 'wrong-drop');
+          selectedChip.classList.add('used');
+          clearChipSelection();
+        } else if (drop.dataset.filled) {
+          restoreChip(drop.dataset.filled);
+          drop.textContent = 'Taruh di sini';
+          delete drop.dataset.filled;
+          drop.classList.remove('filled', 'correct-drop', 'wrong-drop');
+        }
+      });
+
+      gameContainer.appendChild(row);
+    });
+  }
+
+  function restoreChip(val) {
+    const chip = document.querySelector(`.dnd-chip[data-value="${val}"]`);
+    if (chip) chip.classList.remove('used');
+  }
+
+  window.checkDnd = function() {
+    let correct = 0;
+    const result = document.getElementById('dndResult');
+    dndData.forEach((item, i) => {
+      const drop = document.getElementById('drop' + i);
+      drop.classList.remove('correct-drop', 'wrong-drop');
+      if (drop.dataset.filled === item.answer) {
+        drop.classList.add('correct-drop');
+        correct++;
+      } else if (drop.dataset.filled) {
+        drop.classList.add('wrong-drop');
+        drop.title = `Jawaban benar: ${item.answer}`;
+      }
+    });
+    const pct = Math.round(correct / dndData.length * 100);
+    const emoji = pct === 100 ? '🎉' : pct >= 75 ? '👏' : '📚';
+    result.innerHTML = `${emoji} Skor Drag &amp; Drop: <strong style="color:var(--accent3)">${correct} / ${dndData.length}</strong> (${pct}%) — Merah = salah (hover/tekan untuk lihat jawaban benar)`;
+  };
+
+  // Auto-label table cells for mobile
+  document.querySelectorAll('.tbl-wrap table').forEach(function(table) {
+    const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+    table.querySelectorAll('tbody tr').forEach(function(row) {
+      Array.from(row.querySelectorAll('td')).forEach(function(td, i) {
+        if (!td.hasAttribute('data-label')) td.setAttribute('data-label', headers[i] || '');
+      });
+    });
+  });
+
+}); // end DOMContentLoaded
+</script>
+
+</body>
+</html>
