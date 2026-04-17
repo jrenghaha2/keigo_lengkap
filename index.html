@@ -1617,6 +1617,8 @@
     </div>
   </div>
 
+  </div><!-- end content5 fix -->
+
   <!-- ══════════════════════════════════
        TAB 6 — PERBANDINGAN + KUIS + RINGKASAN
   ══════════════════════════════════ -->
@@ -1763,8 +1765,6 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('content' + n).classList.add('active');
     document.getElementById('tab' + n).classList.add('active');
     if (n === 6) {
-      if (!quizBuilt) buildQuiz();
-      if (!dndBuilt) buildDnd();
       animateProgress();
     }
     document.getElementById('content' + n).scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -2190,6 +2190,10 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   });
+
+  // Build quiz and DnD immediately so they're ready
+  try { buildQuiz(); } catch(e) { console.error('buildQuiz error:', e); }
+  try { buildDnd(); } catch(e) { console.error('buildDnd error:', e); }
 
 }); // end DOMContentLoaded
 </script>
